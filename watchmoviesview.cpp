@@ -87,7 +87,7 @@ void WatchMoviesView::activatePlay()
 				mUi->speedSlider->setValue(0);
 				
 				mUi->statusLabelValue->setText(tr("Waiting tibia connection..."));
-				mUi->statusLabelValue->setStyleSheet("color: yellow; font-weight: bold");
+				mUi->statusLabelValue->setStyleSheet("color: #808000; font-weight: bold");
 
 				connect(mMovieFile, SIGNAL(movieStarted()), this, SLOT(onPlayStart()));
 				connect(mMovieFile, SIGNAL(movieSaved()), this, SLOT(onPlayFinish()));

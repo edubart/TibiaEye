@@ -64,7 +64,7 @@ void RecordMoviesView::startRecord()
 		connect(mMovieFile, SIGNAL(movieTime(uint32)), this, SLOT(onRecordTime(uint32)));
 
 		mUi->statusLabelValue->setText(tr("Waiting player login.."));
-		mUi->statusLabelValue->setStyleSheet("color: yellow; font-weight: bold;");
+		mUi->statusLabelValue->setStyleSheet("color: #808000; font-weight: bold;");
 
 		mUi->timeLabelValue->setText("00:00:00");
 	}
