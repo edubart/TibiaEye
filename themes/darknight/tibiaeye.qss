@@ -1,0 +1,209 @@
+/* Global */
+* {
+	selection-color: white;
+	selection-background-color: #333333;
+}
+
+
+QPushButton {
+	border: 1px outset #cccccc;
+	border-radius: 4px;
+	background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 rgba(244, 244, 244, 255), stop:1 rgba(232, 232, 231, 255));
+	margin: 3px;
+	padding: 1px 12px;
+}
+
+QPushButton:hover {
+	background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 rgba(245, 255, 255, 255), stop:1 rgba(242, 242, 241, 255));
+}
+
+QPushButton:pressed {
+	border-style: solid;
+	border-top-color: #999999;
+	background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop: 0 #aaaaaa, stop:0.1 rgba(232, 232, 231, 255), stop:1 rgba(244, 244, 242, 255));
+}
+
+/* Fancy Tab custumization */
+QWidget#fancyTabButtonsWidget {
+	background-color: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 0, stop: 0 #444444, stop: 0.8 #888888, stop: 0.97 #aaaaaa, stop: 1 #000000);
+	border: none;
+	padding: 0px;
+	margin: 0px;
+}
+
+QWidget#fancyTabButtonsWidget > QPushButton {
+	background-color: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 0, stop: 0 #444444, stop: 0.8 #888888, stop: 0.97 #aaaaaa, stop: 1 #000000);
+	image-position: top;
+	border: none;
+	border-radius: 0px;
+	margin: 0px;
+	text-align: bottom;
+	min-height: 64px;
+	color: white;
+	font-weight: bold;
+	padding: 0px 2px;
+	border-top: 1px solid #444444;
+}
+
+
+QWidget#fancyTabButtonsWidget > QPushButton::checked {
+	background-color: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 0, stop: 0 #aaaaaa, stop: 0.8 #ffffff, stop: 0.97 #ffffff, stop: 1 #000000);
+	color: black;
+}
+
+QWidget#fancyTabButtonsWidget > QPushButton::hover:!disabled:!checked {
+	background-color: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 0, stop: 0 #777777, stop: 0.8 #bbbbbb, stop: 0.97 #dddddd, stop: 1 #000000);
+}
+
+
+/* Buttons */
+QWidget#fancyTabButtonsWidget > QPushButton[tabIndex="0"] {
+	image: url(images:watchlocal.png);
+	border: none;
+}
+
+QWidget#fancyTabButtonsWidget > QPushButton::disabled[tabIndex="0"] {
+	image: url(images:watchlocal-off.png);
+}
+
+QWidget#fancyTabButtonsWidget > QPushButton[tabIndex="1"] {
+	image: url(images:recordlocal.png);
+}
+
+QWidget#fancyTabButtonsWidget > QPushButton::disabled[tabIndex="1"] {
+	image: url(images:recordlocal-off.png);
+}
+
+QWidget#fancyTabButtonsWidget > QPushButton[tabIndex="2"] {
+	image: url(images:watchonline.png);
+}
+
+QWidget#fancyTabButtonsWidget > QPushButton::disabled[tabIndex="2"] {
+	image: url(images:watchonline-off.png);
+}
+
+QWidget#fancyTabButtonsWidget > QPushButton[tabIndex="3"] {
+	image: url(images:recordonline.png);
+}
+
+QWidget#fancyTabButtonsWidget > QPushButton::disabled[tabIndex="3"] {
+	image: url(images:recordonline-off.png);
+}
+
+QWidget#fancyTabButtonsWidget > QPushButton[tabIndex="4"] {
+	image: url(images:moviedb.png);
+}
+
+QWidget#fancyTabButtonsWidget > QPushButton::disabled[tabIndex="4"] {
+	image: url(images:moviedb-off.png);
+}
+
+QWidget#fancyTabButtonsWidget > QPushButton[tabIndex="5"] {
+	image: url(images:account.png);
+}
+
+QWidget#fancyTabButtonsWidget > QPushButton::disabled[tabIndex="5"] {
+	image: url(images:account-off.png);
+}
+
+QWidget#fancyTabButtonsWidget > QPushButton[tabIndex="6"] {
+	image: url(images:options.png);
+}
+
+QWidget#fancyTabButtonsWidget > QPushButton::disabled[tabIndex="6"] {
+	image: url(images:options-off.png);
+}
+
+QWidget#fancyTabButtonsWidget > QPushButton[tabIndex="7"] {
+	image: url(images:help.png);
+}
+
+QWidget#fancyTabButtonsWidget > QPushButton::disabled[tabIndex="7"] {
+	image: url(images:help-off.png);
+}
+
+/* Pages custumization */
+QWidget#fancyTabPagesWidget {
+	background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #666666, stop: 0.5 #888888, stop: 1 #444444);
+}
+
+/* Widgets custumuzation */
+QLabel, QGroupBox, QCheckBox, QRadioButton, QProgressBar {
+	color: white;
+}
+
+QLabel:disabled, QGroupBox:disabled, QCheckBox:disabled {
+	color: #999999;
+}
+
+QTableView, QListView, QTextEdit, QLineEdit {
+	border: 1px solid #444444;
+}
+
+QLineEdit, QGroupBox, QTabWidget::pane {
+	border-radius: 4px;
+}
+
+/* TabWidget */
+QTabWidget::pane { /* The tab widget frame */
+	border: 2px solid #C2C7CB;
+	background: #777777;
+}
+
+QTabWidget::tab-bar {
+	left: 5px; /* move to the right by 5px */
+}
+
+QTabBar::tab {
+	background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #E1E1E1, stop: 0.4 #DDDDDD, stop: 0.5 #D8D8D8, stop: 1.0 #D3D3D3);
+	border: 2px solid #C4C4C3;
+	border-bottom-color: #C2C7CB; /* same as the pane color */
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+	min-width: 8ex;
+	padding: 2px;
+}
+
+QTabBar::tab:selected, QTabBar::tab:hover {
+	background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #f1f1f1, stop: 0.4 #eeeeee, stop: 0.5 #e8e8e8, stop: 1.0 #e3e3e3);
+}
+
+QTabBar::tab:selected {
+	border-color: #9B9B9B;
+	border-bottom-color: #C2C7CB; /* same as pane color */
+}
+
+QTabBar::tab:!selected {
+	margin-top: 2px; /* make non-selected tabs look smaller */
+}
+
+/* Group Box */
+QGroupBox {
+	margin-top: 1ex;
+	padding-top: 8px;
+	border: 1px solid #b4b4b4;
+}
+
+QGroupBox::title {
+	subcontrol-origin: margin;
+	subcontrol-position: top left;
+	padding: 0 3px;
+	left: 8px;
+}
+
+/* TableView */
+QTableView QHeaderView {
+	max-height: 16px;
+}
+
+/* MessageBox */
+QMessageBox QLabel {
+	color: black;
+}
+
+QTextEdit[readOnly=true] {
+	background: #444444;
+	border: 2px solid #C2C7CB;
+	border-radius: 5px;
+	color: white;
+}

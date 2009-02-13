@@ -1,0 +1,79 @@
+QWidget#fancyTabButtonsWidget > QPushButton {
+	image-position: top;
+	border: none;
+	border-radius: 0px;
+	margin: 0px;
+	text-align: bottom;
+	min-height: 64px;
+	font-weight: bold;
+	padding: 0px 2px;
+	color: gray;
+}
+
+QWidget#fancyTabButtonsWidget > QPushButton::checked {
+	color: black;
+}
+
+QWidget#fancyTabButtonsWidget > QPushButton[tabIndex="0"] {
+	image: url(images:watchlocal.png);
+}
+
+QWidget#fancyTabButtonsWidget > QPushButton::disabled[tabIndex="0"] {
+	image: url(images:watchlocal-off.png);
+}
+
+QWidget#fancyTabButtonsWidget > QPushButton[tabIndex="1"] {
+	image: url(images:recordlocal.png);
+}
+
+QWidget#fancyTabButtonsWidget > QPushButton::disabled[tabIndex="1"] {
+	image: url(images:recordlocal-off.png);
+}
+
+QWidget#fancyTabButtonsWidget > QPushButton[tabIndex="2"] {
+	image: url(images:watchonline.png);
+}
+
+QWidget#fancyTabButtonsWidget > QPushButton::disabled[tabIndex="2"] {
+	image: url(images:watchonline-off.png);
+}
+
+QWidget#fancyTabButtonsWidget > QPushButton[tabIndex="3"] {
+	image: url(images:recordonline.png);
+}
+
+QWidget#fancyTabButtonsWidget > QPushButton::disabled[tabIndex="3"] {
+	image: url(images:recordonline-off.png);
+}
+
+QWidget#fancyTabButtonsWidget > QPushButton[tabIndex="4"] {
+	image: url(images:moviedb.png);
+}
+
+QWidget#fancyTabButtonsWidget > QPushButton::disabled[tabIndex="4"] {
+	image: url(images:moviedb-off.png);
+}
+
+QWidget#fancyTabButtonsWidget > QPushButton[tabIndex="5"] {
+	image: url(images:account.png);
+}
+
+QWidget#fancyTabButtonsWidget > QPushButton::disabled[tabIndex="5"] {
+	image: url(images:account-off.png);
+}
+
+QWidget#fancyTabButtonsWidget > QPushButton[tabIndex="6"] {
+	image: url(images:options.png);
+}
+
+QWidget#fancyTabButtonsWidget > QPushButton::disabled[tabIndex="6"] {
+	image: url(images:options-off.png);
+}
+
+QWidget#fancyTabButtonsWidget > QPushButton[tabIndex="7"] {
+	image: url(images:help.png);
+}
+
+QWidget#fancyTabButtonsWidget > QPushButton::disabled[tabIndex="7"] {
+	image: url(images:help-off.png);
+}

@@ -1,0 +1,22 @@
+<RCC>
+    <qresource prefix="/" >
+        <file>images/tibiaeye_logo_32x32.png</file>
+        <file>images/tibiaeye_splash.png</file>
+        <file>images/buttons/recordonline.png</file>
+        <file>images/buttons/watchlocal.png</file>
+        <file>images/buttons/watchonline.png</file>
+        <file>images/buttons/options.png</file>
+        <file>images/buttons/help.png</file>
+        <file>images/buttons/recordlocal.png</file>
+        <file>images/buttons/account.png</file>
+        <file>images/buttons/recordonline-off.png</file>
+        <file>images/buttons/options-off.png</file>
+        <file>images/buttons/moviedb.png</file>
+        <file>images/buttons/watchonline-off.png</file>
+        <file>images/buttons/watchlocal-off.png</file>
+        <file>images/buttons/help-off.png</file>
+        <file>images/buttons/recordlocal-off.png</file>
+        <file>images/buttons/account-off.png</file>
+        <file>images/buttons/moviedb-off.png</file>
+    </qresource>
+</RCC>
