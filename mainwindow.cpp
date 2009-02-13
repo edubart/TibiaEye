@@ -93,6 +93,8 @@ void MainWindow::readSettings()
 
 	if(theme.isValid())
 		setTheme(theme.toString());
+	else
+		setTheme("clean");
 }
 
 void MainWindow::writeSettings()
@@ -127,6 +129,8 @@ bool MainWindow::setTheme(const QString &theme)
 		setStyleSheet(styleSheet);
 		return true;
 	}
+
+	qCritical() << qPrintable(tr("Failed opening theme \"%1\".").arg(theme));
 	return false;
 }
 

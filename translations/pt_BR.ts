@@ -17,7 +17,7 @@
 <context>
     <name>ClientProxy</name>
     <message>
-        <location filename="../clientproxy.cpp" line="22"/>
+        <location filename="../clientproxy.cpp" line="26"/>
         <source>Unable to start listen socket.</source>
         <translation>Error iniciando o socket.</translation>
     </message>
@@ -25,7 +25,7 @@
 <context>
     <name>GameProtocol</name>
     <message>
-        <location filename="../gameprotocol.cpp" line="97"/>
+        <location filename="../gameprotocol.cpp" line="101"/>
         <source>You may have restarted Tibia Eye, please relogin.</source>
         <translation>Você deve ter reniciado o Tibia Eye, relogue.</translation>
     </message>
@@ -33,7 +33,7 @@
 <context>
     <name>LoginProtocol</name>
     <message>
-        <location filename="../loginprotocol.cpp" line="60"/>
+        <location filename="../loginprotocol.cpp" line="64"/>
         <source>Your tibia version is not supported by Tibia Eye.</source>
         <translation>A versão do seu Tibia não é suportada pelo Tibia Eye.</translation>
     </message>
@@ -80,16 +80,21 @@
         <source>About</source>
         <translation>Sobre</translation>
     </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="133"/>
+        <source>Failed opening theme &quot;%1&quot;.</source>
+        <translation>Error ao abrir a theme &quot;%1&quot;.</translation>
+    </message>
 </context>
 <context>
     <name>ModeManager</name>
     <message>
-        <location filename="../modemanager.cpp" line="27"/>
+        <location filename="../modemanager.cpp" line="33"/>
         <source>A mode is already running.</source>
         <translation>Um modo já esta rodando.</translation>
     </message>
     <message>
-        <location filename="../modemanager.cpp" line="35"/>
+        <location filename="../modemanager.cpp" line="41"/>
         <source>Unable to find a supported Tibia client running.</source>
         <translation>Nenhuma versão suportada do client do Tibia foi encontrada.</translation>
     </message>
@@ -102,57 +107,57 @@
         <translation type="obsolete">Falha ao abrir o filme &quot;%1&quot; para leitura</translation>
     </message>
     <message>
-        <location filename="../moviefile.cpp" line="75"/>
+        <location filename="../moviefile.cpp" line="81"/>
         <source>Invalid Tibia Eye movie format: %1</source>
         <translation>Formato de filmes do Tibia Eye invalido: %1</translation>
     </message>
     <message>
-        <location filename="../moviefile.cpp" line="174"/>
+        <location filename="../moviefile.cpp" line="180"/>
         <source>Error reading movie file: %1</source>
         <translation>Erro na leitura do filme: %1</translation>
     </message>
     <message>
-        <location filename="../moviefile.cpp" line="194"/>
+        <location filename="../moviefile.cpp" line="202"/>
         <source>Failed opening file %1 for writing.</source>
         <translation>Erro ao abrir o filme %1 para escrita.</translation>
     </message>
     <message>
-        <location filename="../moviefile.cpp" line="355"/>
+        <location filename="../moviefile.cpp" line="367"/>
         <source>Hunt</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../moviefile.cpp" line="357"/>
+        <location filename="../moviefile.cpp" line="369"/>
         <source>Quest</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../moviefile.cpp" line="359"/>
+        <location filename="../moviefile.cpp" line="371"/>
         <source>Explore</source>
         <translation>Exploração</translation>
     </message>
     <message>
-        <location filename="../moviefile.cpp" line="361"/>
+        <location filename="../moviefile.cpp" line="373"/>
         <source>Player Kill</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../moviefile.cpp" line="363"/>
+        <location filename="../moviefile.cpp" line="375"/>
         <source>War</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../moviefile.cpp" line="365"/>
+        <location filename="../moviefile.cpp" line="377"/>
         <source>Party</source>
         <translation>Festa</translation>
     </message>
     <message>
-        <location filename="../moviefile.cpp" line="62"/>
+        <location filename="../moviefile.cpp" line="68"/>
         <source>Failed opening movie file &quot;%1&quot; for reading.</source>
         <translation>Falha ao abrir o filme &quot;%1&quot; para leitura.</translation>
     </message>
     <message>
-        <location filename="../moviefile.cpp" line="368"/>
+        <location filename="../moviefile.cpp" line="380"/>
         <source>Other</source>
         <translation>Outro</translation>
     </message>
@@ -248,12 +253,12 @@
 <context>
     <name>QTranslator</name>
     <message>
-        <location filename="../main.cpp" line="23"/>
+        <location filename="../main.cpp" line="24"/>
         <source>Error</source>
         <translation>Erro</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="28"/>
+        <location filename="../main.cpp" line="29"/>
         <source>Fatal Error</source>
         <translation>Erro Fatal</translation>
     </message>
@@ -279,11 +284,6 @@
         <location filename="../recordmoviesview.cpp" line="66"/>
         <source>Waiting player login..</source>
         <translation>Esperando player logar..</translation>
-    </message>
-    <message>
-        <location filename="../recordmoviesview.cpp" line="69"/>
-        <source>00:00:00</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../recordmoviesview.cpp" line="91"/>
