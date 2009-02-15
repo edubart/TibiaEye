@@ -1,0 +1,27 @@
+Milestone 1: (gravar e reproduzir)
+* compactação/encryptação e checagem do video
+* detectar level do player
+* as funcoes de escoder viplist, mensagens, no modo de gravação
+* pular partes do filme
+* cancelar walks
+
+Milestone 2: (gravar a vida)
+* conjunto de movies files
+
+Milestone 3: (database de filmes)
+
+Milestone 4: (streaming)
+* conversar com players
+
+Milestone 5: (eagle eye v1)
+
+Milestone 6: (eagle eye v2)
+
+Windows:
+assosiação de arquivos
+abrir tibia e logar automatico (assembly way)
+
+ideias:
+não gravar pacotes, mas gravar o mapa e um timeline de mudanças
+comandos no play mode com /
+cancelar walks
