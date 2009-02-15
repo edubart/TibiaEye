@@ -2,8 +2,8 @@ Milestone 1: (gravar e reproduzir)
 * compactação/encryptação e checagem do video
 * detectar level do player
 * as funcoes de escoder viplist, mensagens, no modo de gravação
+* pegar mensagens de npcs
 * pular partes do filme
-* cancelar walks
 
 Milestone 2: (gravar a vida)
 * conjunto de movies files
@@ -24,4 +24,4 @@ abrir tibia e logar automatico (assembly way)
 ideias:
 não gravar pacotes, mas gravar o mapa e um timeline de mudanças
 comandos no play mode com /
-cancelar walks
+filtra pacotes q criam janelas

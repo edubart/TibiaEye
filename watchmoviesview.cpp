@@ -147,6 +147,7 @@ void WatchMoviesView::stopPlay()
 {
 	ModeManager::instance()->stopMode();
 
+	ModeManager::instance()->setMovieFile(NULL);
 	delete mMovieFile;
 	mMovieFile = NULL;
 

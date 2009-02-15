@@ -27,6 +27,7 @@ private slots:
 
 	void parsePlayClientLogout(NetworkMessage&);
 	void parsePlayClientWalk(NetworkMessage& msg);
+	void parsePlayClientAttackOrFollow(NetworkMessage&);
 	//void parsePlayClientSay(NetworkMessage& msg);
 
 	// record parses

@@ -80,6 +80,10 @@ void ProtocolGame::parsePlayClientMessage(NetworkMessage& msg)
 		case 0x6D: // move northwest
 			parsePlayClientWalk(msg);
 			break;
+		case 0xA1: // attack
+		case 0xA2: // follow
+			parsePlayClientAttackOrFollow(msg);
+			break;
 		case 0x96: // say something
 			//parsePlayClientSay(msg);
 			break;
@@ -117,8 +121,6 @@ void ProtocolGame::parsePlayClientMessage(NetworkMessage& msg)
 		case 0x9D: // player cancels report
 		case 0x9E: // close NPC
 		case 0xA0: // set attack and follow mode
-		case 0xA1: // attack
-		case 0xA2: // follow
 		case 0xA3: // invite to party
 		case 0xA4: // join party
 		case 0xA5: // revoke party invitation
@@ -153,7 +155,7 @@ void ProtocolGame::parsePlayClientLogout(NetworkMessage&)
 
 void ProtocolGame::parsePlayClientWalk(NetworkMessage& msg)
 {
-	qDebug("ProtocolGame:: parsePlayClientWalk");
+	qDebug("ProtocolGame::parsePlayClientWalk");
 
 	mMsg.reset();
 	mMsg.addByte(0xB5);
@@ -161,6 +163,17 @@ void ProtocolGame::parsePlayClientWalk(NetworkMessage& msg)
 
 	sendClientMessage(mMsg);
 }
+
+void ProtocolGame::parsePlayClientAttackOrFollow(NetworkMessage&)
+{
+	qDebug("ProtocolGame::parsePlayClientAttackOrFollow");
+
+	mMsg.reset();
+	mMsg.addByte(0xA3);
+
+	sendClientMessage(mMsg);
+}
+
 /*
 void parsePlayClientSay(NetworkMessage& msg)
 {

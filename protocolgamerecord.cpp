@@ -125,13 +125,19 @@ void ProtocolGame::parseRecordServerDisconnect()
 {
 	qDebug("ProtocolGame::parseRecordServerDisconnect");
 
-	mModeManager->getMovieFile()->stopMovie();
-	mModeManager->getMovieFile()->saveMovie();
+	MovieFile *movieFile = mModeManager->getMovieFile();
+	if(movieFile) {
+		mModeManager->getMovieFile()->stopMovie();
+		mModeManager->getMovieFile()->saveMovie();
+	}
 }
 
 void ProtocolGame::parseRecordServerMessage(NetworkMessage& msg)
 {
 	qDebug("ProtocolGame::parseRecordServerMessage");
+
+	if(!mModeManager->getMovieFile())
+		return;
 
 	bool record = false;
 
@@ -168,7 +174,7 @@ void ProtocolGame::parseRecordServerMessage(NetworkMessage& msg)
 			break;
 	}
 
-	if(record)
+	if(record && mModeManager->getMovieFile())
 		mModeManager->getMovieFile()->recordMessage(msg);
 }
 
@@ -176,6 +182,9 @@ void ProtocolGame::parseRecordClientMessage(NetworkMessage& msg)
 {
 	qDebug("ProtocolGame::parseRecordClientMessage");
 
+	if(!mModeManager->getMovieFile())
+		return;
+	
 	uint8 opt = msg.getByte();
 	switch(opt) {
 		case 0x96: // say something
@@ -265,6 +274,10 @@ void ProtocolGame::parseRecordClientPrivateMessage(NetworkMessage& msg)
 		case SPEAK_PRIVATE_RED:
 			reciver = msg.getString();
 			break;
+/*		case SPEAK_PRIVATE_PN:
+			reciver = mModeManager->getMovieFile()->getPlayerName();
+			type = SPEAK_PRIVATE_NP;
+			break;*/
 		default:
 			return;
 	}
@@ -278,6 +291,11 @@ void ProtocolGame::parseRecordClientPrivateMessage(NetworkMessage& msg)
 	mMsg.addString(reciver);
 	mMsg.addU16(0); // speaker level
 	mMsg.addByte(type);
+/*
+	if(type == SPEAK_PRIVATE_PN) {
+		//add position
+	}
+*/
 	mMsg.addString(text);
 
 	mModeManager->getMovieFile()->recordMessage(mMsg);

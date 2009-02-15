@@ -174,6 +174,7 @@ void RecordMoviesView::stopRecordMode()
 	modeManager->stopMode();
 	disconnect(modeManager->getClient(), 0, this, 0);
 
+	modeManager->setMovieFile(NULL);
 	delete mMovieFile;
 	mMovieFile = NULL;
 
