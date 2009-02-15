@@ -1,7 +1,7 @@
 #include "headers.h"
 #include "clientproxy.h"
-#include "loginprotocol.h"
-#include "gameprotocol.h"
+#include "protocollogin.h"
+#include "protocolgame.h"
 #include "tibiasocket.h"
 
 ClientProxy::ClientProxy() : QTcpServer()
@@ -36,6 +36,13 @@ void ClientProxy::stopListen()
 	qDebug("ClientProxy::stopListen");
 
 	close();
+}
+
+
+bool ClientProxy::isConnected()
+{
+	qDebug("ClientProxy::isConnected");
+	return (mClientSocket && mClientSocket->isValid());
 }
 
 void ClientProxy::disconnect()
@@ -79,10 +86,10 @@ void ClientProxy::onClientMessage(NetworkMessage &msg)
 
 	switch(msg.getByte()) {
 		case 0x01:
-			protocol = new LoginProtocol(this);
+			protocol = new ProtocolLogin(this);
 			break;
 		case 0x0A:
-			protocol = new GameProtocol(this);
+			protocol = new ProtocolGame(this);
 			break;
 		default:
 			qWarning() << "[ClientProxy::onClientMessage] Invalid protocol.";
@@ -104,4 +111,6 @@ void ClientProxy::onClientDisconnect()
 
 	mClientSocket->deleteLater();
 	mClientSocket = NULL;
+
+	emit clientDisconnected();
 }

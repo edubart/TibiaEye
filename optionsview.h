@@ -28,6 +28,7 @@ private slots:
 	void defaultLanguageButtonClicked();
 	void changeFontButtonClicked();
 	void browseButtonClicked();
+	void tibiaServerChanged();
 
 private:
 	void listThemes();

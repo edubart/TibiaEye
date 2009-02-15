@@ -64,6 +64,7 @@ public:
 	bool loadMovie(bool loadPackets = true);
 
 	int playMessage(NetworkMessage &msg);
+	void rewind();
 
 	void lockRecord(bool lock) { mRecordLock = lock; }
 	bool isRecordLocked() { return mRecordLock; }
@@ -81,6 +82,7 @@ public:
 	void setSpeed(float speed) { mSpeed = speed; }
 
 	// gets
+	const QString &getMovieFile() const { return mFilename; }
 	const QString &getMovieTitle() const { return mMovieTitle; }
 	const QString &getMovieDescription() const { return mMovieDescription; }
 	uint8 getMovieType() const { return mMovieType; }
@@ -106,6 +108,7 @@ signals:
 	void movieSaved();
 
 public slots:
+	void stopMovie();
 	void saveMovie();
 
 	void recordMessage(NetworkMessage &msg);
@@ -122,7 +125,6 @@ private:
 	uint32 mWorldIp;
 	uint16 mTibiaVersion;
 
-	uint32 mStartMSec;
 	uint32 mMovieDate;
 	uint32 mDuration;
 	PacketVector mPackets;
@@ -130,6 +132,8 @@ private:
 	float mSpeed;
 
 	bool mRecordLock;
+
+	QTime timeCounter;
 };
 
 #endif // MOVIEFILE_H

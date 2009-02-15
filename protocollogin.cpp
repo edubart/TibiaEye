@@ -1,5 +1,5 @@
 #include "headers.h"
-#include "loginprotocol.h"
+#include "protocollogin.h"
 #include "clientproxy.h"
 #include "serverproxy.h"
 #include "modemanager.h"
@@ -7,25 +7,24 @@
 #include "moviefile.h"
 #include "optionsview.h"
 
-LoginProtocol::LoginProtocol(ClientProxy *client)
+ProtocolLogin::ProtocolLogin(ClientProxy *client)
 	: Protocol(client)
 {
-	qDebug("LoginProtocol::LoginProtocol");
+	qDebug("ProtocolLogin::ProtocolLogin");
 
 	mModeManager = ModeManager::instance();
-	mMovieFile = mModeManager->getMovieFile();
 
 	connect(this, SIGNAL(firstClientMessage(NetworkMessage&)), this, SLOT(parseFirstClientMessage(NetworkMessage&)));
 }
 
-LoginProtocol::~LoginProtocol()
+ProtocolLogin::~ProtocolLogin()
 {
-	qDebug("LoginProtocol::~LoginProtocol");
+	qDebug("ProtocolLogin::~ProtocolLogin");
 }
 
-void LoginProtocol::parseFirstClientMessage(NetworkMessage& msg)
+void ProtocolLogin::parseFirstClientMessage(NetworkMessage& msg)
 {
-	qDebug("LoginProtocol::parseFirstClientMessage");
+	qDebug("ProtocolLogin::parseFirstClientMessage");
 
 	// client information
 	uint16 clientos = msg.getU16();
@@ -38,7 +37,7 @@ void LoginProtocol::parseFirstClientMessage(NetworkMessage& msg)
 			isVersionAvailable = true;
 	}
 	if(!isVersionAvailable)
-		qWarning() << "[LoginProtocol::parseFirstClientMessage] Client connection with unsupported Tibia version.";
+		qWarning() << "[ProtocolLogin::parseFirstClientMessage] Client connection with unsupported Tibia version.";
 
 	// skip uneeded bytes
 	uint8 skippedBytes[12];
@@ -72,8 +71,8 @@ void LoginProtocol::parseFirstClientMessage(NetworkMessage& msg)
 		sendMsg.reset();
 		sendMsg.addByte(0x64); // character list opcode
 		sendMsg.addByte(0x01); // 1 character
-		sendMsg.addString(mMovieFile->getPlayerName()); // player name
-		sendMsg.addString(mMovieFile->getPlayerWorld()); // player world
+		sendMsg.addString("Tibia Eye Movie"); // player name
+		sendMsg.addString("Tibia Eye"); // player world
 		sendMsg.addU32(0x0100007f); // 127.0.0.1 ip address
 		sendMsg.addU16(8000); // proxy port
 		sendMsg.addU16(0x00); // prem days
@@ -113,7 +112,7 @@ void LoginProtocol::parseFirstClientMessage(NetworkMessage& msg)
 		}
 
 		// setup record
-		mMovieFile->setServerHost(host);
+		mModeManager->getMovieFile()->setServerHost(host);
 
 		// connect to server via proxy
 		ServerProxy *serverProxy = new ServerProxy(this);
@@ -126,17 +125,17 @@ void LoginProtocol::parseFirstClientMessage(NetworkMessage& msg)
 	}
 }
 
-void LoginProtocol::parseRecordServerConnect()
+void ProtocolLogin::parseRecordServerConnect()
 {
-	qDebug("LoginProtocol::parseRecordServerConnect");
+	qDebug("ProtocolLogin::parseRecordServerConnect");
 
 	sendServerMessage(sendMsg);
 	enableXTEAEncryption();
 }
 
-void LoginProtocol::parseRecordServerMessage(NetworkMessage& msg)
+void ProtocolLogin::parseRecordServerMessage(NetworkMessage& msg)
 {
-	qDebug("LoginProtocol::parseRecordServerMessage");
+	qDebug("ProtocolLogin::parseRecordServerMessage");
 
 	sendMsg.reset();
 
@@ -175,7 +174,7 @@ void LoginProtocol::parseRecordServerMessage(NetworkMessage& msg)
 				}
 				break;
 			default:
-				qWarning() << "[LoginProtocol::parseRecordServerMessage] Invalid loginserver opcode.";
+				qWarning() << "[ProtocolLogin::parseRecordServerMessage] Invalid loginserver opcode.";
 				break;
 		}
 	}
@@ -185,9 +184,9 @@ void LoginProtocol::parseRecordServerMessage(NetworkMessage& msg)
 	disconnectClient();
 }
 
-void LoginProtocol::disconnectWithError(const QString &message)
+void ProtocolLogin::disconnectWithError(const QString &message)
 {
-	qDebug("LoginProtocol::disconnectWithError");
+	qDebug("ProtocolLogin::disconnectWithError");
 
 	sendMsg.reset();
 	sendMsg.addByte(0x0A);

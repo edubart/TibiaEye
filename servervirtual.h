@@ -4,8 +4,8 @@
 #include "abstractserverproxy.h"
 #include "networkmessage.h"
 
+class ModeManager;
 class Protocol;
-class MovieFile;
 struct Packet;
 
 class ServerVirtual : public AbstractServerProxy
@@ -21,7 +21,7 @@ class ServerVirtual : public AbstractServerProxy
 	};
 
 public:
-	ServerVirtual(Protocol *protocol, MovieFile *movieFile);
+	ServerVirtual(Protocol *protocol);
 	virtual ~ServerVirtual();
 
 	void start();
@@ -31,14 +31,7 @@ private slots:
 	void onTimer();
 
 private:
-	void onServerConnect();
-	void onServerRecive();
-	void onServerDisconnect();
-
-	Packet *mCurrentPacket;
-	Packet *mNextPacket;
-
-	MovieFile *mMovieFile;
+	ModeManager *mModeManager;
 	Protocol *mProtocol;
 
 	eVirtualStates mState;

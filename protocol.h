@@ -6,6 +6,7 @@ class ClientProxy;
 class AbstractServerProxy;
 class NetworkMessage;
 
+//TODO: integrate with TibiaSocket
 class Protocol : public QObject
 {
 	Q_OBJECT

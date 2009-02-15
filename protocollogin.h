@@ -1,5 +1,5 @@
-#ifndef LOGINPROTOCOL_H
-#define LOGINPROTOCOL_H
+#ifndef PROTOCOLLOGIN_H
+#define PROTOCOLLOGIN_H
 
 #include "protocol.h"
 #include "networkmessage.h"
@@ -7,13 +7,13 @@
 class ModeManager;
 class MovieFile;
 
-class LoginProtocol : public Protocol
+class ProtocolLogin : public Protocol
 {
 	Q_OBJECT
 
 public:
-	LoginProtocol(ClientProxy *client);
-	virtual ~LoginProtocol();
+	ProtocolLogin(ClientProxy *client);
+	virtual ~ProtocolLogin();
 
 private slots:
 	void parseFirstClientMessage(NetworkMessage& msg);
@@ -25,9 +25,8 @@ private:
 	void disconnectWithError(const QString &message);
 
 	ModeManager *mModeManager;
-	MovieFile *mMovieFile;
 
 	NetworkMessage sendMsg;
 };
 
-#endif // LOGINPROTOCOL_H
+#endif // PROTOCOLLOGIN_H

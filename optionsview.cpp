@@ -2,6 +2,8 @@
 #include "optionsview.h"
 #include "ui_optionsview.h"
 #include "mainwindow.h"
+#include "rsa.h"
+#include "consttibia.h"
 
 OptionsView::OptionsView(MainWindow *mainWindow) :
 	QWidget(mainWindow),
@@ -14,6 +16,8 @@ OptionsView::OptionsView(MainWindow *mainWindow) :
 	connect(mUi->setDefaultLanguageButton, SIGNAL(clicked()), this, SLOT(defaultLanguageButtonClicked()));
 	connect(mUi->changeFontButton, SIGNAL(clicked()), this, SLOT(changeFontButtonClicked()));
 	connect(mUi->browseButton, SIGNAL(clicked()), this, SLOT(browseButtonClicked()));
+	connect(mUi->tibiaServerRadioButton, SIGNAL(clicked()), this, SLOT(tibiaServerChanged()));
+	connect(mUi->otservServerRadioButton, SIGNAL(clicked()), this, SLOT(tibiaServerChanged()));
 
 	listThemes();
 	listLanguages();
@@ -31,6 +35,7 @@ static const char * const proxyListenPortKey = "ProxyListenPort";
 static const char * const fontFamilyKey = "FontFamily";
 static const char * const fontSizeKey = "FontSize";
 static const char * const languageKey = "Language";
+static const char * const customHostKey = "CustomHost";
 
 void OptionsView::readSettings(QSettings *settings)
 {
@@ -42,13 +47,14 @@ void OptionsView::readSettings(QSettings *settings)
 		mUi->moviesDirText->setText(QDir::currentPath() + "/movies");
 	mUi->listenPortBox->setValue(settings->value(proxyListenPortKey, 8000).toInt());
 
-	// read font
 	const QVariant fontFamily = settings->value(fontFamilyKey);
 	if(fontFamily.isValid()) {
 		int fontSize = settings->value(fontSizeKey, 9).toInt();
 		QApplication::setFont(QFont(fontFamily.toString(), fontSize));
 	}
 	mUi->fontValueLabel->setText(QString("%1, %2").arg(QApplication::font().family()).arg(QApplication::font().pointSize()));
+
+	mUi->customServerAddressText->setText(settings->value(customHostKey, "localhost:7171").toString());
 
 	settings->endGroup();
 }
@@ -60,6 +66,7 @@ void OptionsView::writeSettings(QSettings *settings)
 	settings->setValue(proxyListenPortKey, mUi->listenPortBox->value());
 	settings->setValue(fontFamilyKey, QApplication::font().family());
 	settings->setValue(fontSizeKey, QApplication::font().pointSize());
+	settings->setValue(customHostKey, mUi->customServerAddressText->text());
 	settings->endGroup();
 
 	if(!mLanguage.isEmpty())
@@ -122,6 +129,17 @@ void OptionsView::browseButtonClicked()
 		mUi->moviesDirText->setText(newDir);
 }
 
+void OptionsView::tibiaServerChanged()
+{
+	RSA *rsa = RSA::instance();
+	if(rsa) {
+		if(mUi->tibiaServerRadioButton->isChecked())
+			rsa->setEncryptKey(ConstTibia::CipPublicRSA);
+		else
+			rsa->setEncryptKey(ConstTibia::OTServPublicRSA);
+	}
+}
+
 uint16 OptionsView::getProxyListenPort() const
 {
 	return (uint16)mUi->listenPortBox->value();
@@ -168,7 +186,6 @@ QString OptionsView::getServerHost() const
 
 	return host;
 }
-
 
 QString OptionsView::getMoviesDir() const
 {

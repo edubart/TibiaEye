@@ -9,6 +9,7 @@
 #include "memoryinjection.h"
 #include "rsa.h"
 #include "consttibia.h"
+#include "clientproxy.h"
 
 MainWindow::MainWindow(QSettings *settings, QWidget *parent) :
 	QMainWindow(parent),
@@ -125,7 +126,6 @@ bool MainWindow::setTheme(const QString &theme)
 		QString styleSheet = QLatin1String(file.readAll());
 		file.close();
 
-		//qApp->setStyleSheet(styleSheet);
 		setStyleSheet(styleSheet);
 		return true;
 	}
@@ -136,8 +136,24 @@ bool MainWindow::setTheme(const QString &theme)
 
 void MainWindow::closeEvent(QCloseEvent *event)
 {
-	writeSettings();
-	event->accept();
+	bool closeIt = true;
+
+	if(mModeManager->getClient() && mModeManager->getClient()->isConnected()) {
+		QMessageBox::StandardButton res = QMessageBox::question(this,
+							  tr("Closing Tibia Eye"),
+							  tr("You are trying to close Tibia Eye while a Tibia client is connected, "
+								 "doing this will disconnect Tibia and stop any action that it is running on it.\n"
+								 "Are you sure that you want to continue?"),
+							  QMessageBox::Yes | QMessageBox::No, QMessageBox::No);
+		if(res == QMessageBox::No)
+			closeIt = false;
+	}
+
+	if(closeIt) {
+		writeSettings();
+		event->accept();
+	} else
+		event->ignore();
 }
 
 void MainWindow::exit()

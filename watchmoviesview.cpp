@@ -13,13 +13,14 @@ WatchMoviesView::WatchMoviesView(QWidget *parent) :
 
 	mUi->moviesTable->verticalHeader()->hide();
 	mUi->moviesTable->horizontalHeader()->setResizeMode(QHeaderView::ResizeToContents);
+	mUi->moviesTable->hideColumn(4);
 
 	mMovieFile = NULL;
 
 	connect(mUi->speedSlider, SIGNAL(valueChanged(int)), this, SLOT(speedChanged(int)));
 	connect(mUi->refreshListButton, SIGNAL(clicked()), this, SLOT(updateMoviesList()));
 	connect(mUi->refreshListButton, SIGNAL(clicked()), mUi->filterText, SLOT(clear()));
-	connect(mUi->activateButton, SIGNAL(clicked()), this, SLOT(activatePlay()));
+	connect(mUi->startButton, SIGNAL(clicked()), this, SLOT(startPlay()));
 	connect(mUi->stopButton, SIGNAL(clicked()), this, SLOT(stopPlay()));
 	connect(mUi->moviesTable, SIGNAL(itemSelectionChanged()), this, SLOT(movieChanged()));
 	connect(mUi->filterText, SIGNAL(textChanged(QString)), this, SLOT(filterMovies(QString)));
@@ -37,6 +38,9 @@ WatchMoviesView::~WatchMoviesView()
 
 void WatchMoviesView::updateMoviesList()
 {
+	if(!OptionsView::instance())
+		return;
+
 	mUi->moviesTable->clearContents();
 	while(mUi->moviesTable->rowCount() != 0)
 		mUi->moviesTable->removeRow(0);
@@ -68,49 +72,92 @@ void WatchMoviesView::updateMoviesList()
 	mUi->moviesTable->sortByColumn(0, Qt::AscendingOrder);
 	mUi->moviesTable->resizeColumnsToContents();
 
-	//if(mUi->moviesTable->rowCount() > 0)
-	//	mUi->moviesTable->selectRow(0);
+	mUi->titleLabelValue->clear();
+	mUi->typeLabelValue->clear();
+	mUi->playerLabelValue->clear();
+	mUi->worldLabelValue->clear();
+	mUi->dateLabelValue->clear();
+	mUi->durationLabelValue->clear();
+	mUi->versionLabelValue->clear();
+	mUi->descriptionText->clear();
 }
 
-void WatchMoviesView::activatePlay()
+void WatchMoviesView::startPlay()
 {
 	if(mUi->moviesTable->selectedItems().size() > 0 && mUi->moviesTable->item(mUi->moviesTable->currentRow(), 8)) {
-		mMovieFile = new MovieFile(OptionsView::instance()->getMoviesDir() + "/" + mUi->moviesTable->item(mUi->moviesTable->currentRow(), 8)->text());
-		if(mMovieFile->loadMovie(true)) {
-			ModeManager *modeManager = ModeManager::instance();
-			if(modeManager->startMode(MODE_PLAY)) {
-				modeManager->setMovieFile(mMovieFile);
-				mUi->stopButton->setEnabled(true);
-				mUi->activateButton->setEnabled(false);
-				mUi->movieFileLabelValue->setText(mUi->moviesTable->item(mUi->moviesTable->currentRow(), 8)->text());
-				mUi->speedLabelValue->setText("1.00x");
-				mUi->speedSlider->setValue(0);
-				
-				mUi->statusLabelValue->setText(tr("Waiting tibia connection..."));
-				mUi->statusLabelValue->setStyleSheet("color: #808000; font-weight: bold");
+		QString file = mUi->moviesTable->item(mUi->moviesTable->currentRow(), 8)->text();
+		bool loadMovie = false;
+		bool startMode = false;
+		bool movieOk = false;
+		bool playOk = false;
+		MovieFile *movieFile = NULL;
+		ModeManager *modeManager = ModeManager::instance();
 
-				connect(mMovieFile, SIGNAL(movieStarted()), this, SLOT(onPlayStart()));
-				connect(mMovieFile, SIGNAL(movieSaved()), this, SLOT(onPlayFinish()));
-				connect(mMovieFile, SIGNAL(movieTime(uint32)), this, SLOT(onPlayTime(uint32)));
-			}
+		if(mMovieFile) {
+			if(mMovieFile->getMovieFile() == file)
+				mMovieFile->rewind();
+			else
+				loadMovie = true;
+		} else {
+			loadMovie = true;
+			startMode = true;
 		}
-	} else
+
+		if(loadMovie) {
+			movieFile = new MovieFile(OptionsView::instance()->getMoviesDir()
+										   + "/"
+										   + file);
+			movieOk = movieFile->loadMovie(true);
+		}
+
+		if(movieOk && startMode) {
+			if(modeManager->startMode(MODE_PLAY)) {
+				modeManager->setMovieFile(movieFile);
+				playOk = true;
+			}
+		} else if(movieOk && !startMode) {
+			modeManager->setMovieFile(movieFile);
+			playOk = true;
+		}
+
+		if(playOk) {
+			connect(movieFile, SIGNAL(movieStarted()), this, SLOT(onPlayStart()));
+			connect(movieFile, SIGNAL(movieTime(uint32)), this, SLOT(onPlayTime(uint32)));
+
+			mUi->stopButton->setEnabled(true);
+
+			mUi->movieFileLabelValue->setText(mUi->moviesTable->item(mUi->moviesTable->currentRow(), 8)->text());
+			mUi->speedLabelValue->setText("1.00x");
+			mUi->speedSlider->setValue(0);
+			mUi->playProgressBar->setValue(0);
+
+			mUi->statusLabelValue->setText(tr("Waiting tibia connection..."));
+			mUi->statusLabelValue->setStyleSheet("color: #808000; font-weight: bold");
+
+			if(mMovieFile)
+				delete mMovieFile;
+			mMovieFile = movieFile;
+		}
+	} else {
 		qCritical() << qPrintable(tr("You must select a movie to play."));
+	}
 }
 
-//TODO: stopping movies before finish and playing again bugs tibia
 void WatchMoviesView::stopPlay()
 {
-	onPlayFinish();
-	mUi->movieFileLabelValue->setText(tr("none"));
-
-	mUi->statusLabelValue->setText(tr("Idle"));
-	mUi->statusLabelValue->setStyleSheet("color: red; font-weight: bold");
-
 	ModeManager::instance()->stopMode();
 
 	delete mMovieFile;
 	mMovieFile = NULL;
+
+	mUi->speedSlider->setEnabled(false);
+	mUi->stopButton->setEnabled(false);
+
+	mUi->movieFileLabelValue->setText(tr("none"));
+
+	mUi->playProgressBar->setValue(0);
+	mUi->statusLabelValue->setText(tr("Idle"));
+	mUi->statusLabelValue->setStyleSheet("color: red; font-weight: bold");
 }
 
 void WatchMoviesView::speedChanged(int value)
@@ -130,14 +177,13 @@ void WatchMoviesView::speedChanged(int value)
 
 void WatchMoviesView::movieChanged()
 {
-	//TODO: test movie switching without stopping
 	QTableWidgetItem *item = mUi->moviesTable->item(mUi->moviesTable->currentRow(), 8);
 	if(item) {
 		MovieFile movieFile(OptionsView::instance()->getMoviesDir() + "/" + item->text());
 		if(movieFile.loadMovie(false)) {
 			mUi->titleLabelValue->setText(movieFile.getMovieTitle());
 			mUi->typeLabelValue->setText(movieFile.getMovieTypeName());
-			mUi->playerLabelValue->setText(movieFile.getPlayerName() + " (Level " + QString::number(movieFile.getPlayerLevel()) + ")");
+			mUi->playerLabelValue->setText(movieFile.getPlayerName()/*+ " (Level " + QString::number(movieFile.getPlayerLevel()) + ")"*/);
 			mUi->worldLabelValue->setText(movieFile.getPlayerWorld());
 			mUi->dateLabelValue->setText(QDateTime::fromTime_t(movieFile.getMovieDate()).toString());
 			mUi->durationLabelValue->setText(QTime().addMSecs(movieFile.getMovieDuration()).toString("hh:mm:ss"));
@@ -157,6 +203,7 @@ void WatchMoviesView::filterMovies(const QString &filter)
 				break;
 			}
 		}
+
 		if(show)
 			mUi->moviesTable->showRow(x);
 		else
@@ -172,16 +219,7 @@ void WatchMoviesView::onPlayStart()
 	mUi->statusLabelValue->setStyleSheet("color: blue; font-weight: bold");
 }
 
-void WatchMoviesView::onPlayFinish()
-{
-	mUi->speedSlider->setEnabled(false);
-	mUi->stopButton->setEnabled(false);
-	mUi->activateButton->setEnabled(true);
-
-	mUi->statusLabelValue->setText(tr("Play finished."));
-	mUi->statusLabelValue->setStyleSheet("color: green; font-weight: bold");
-}
-
+//TODO: display current time even when there no incomming packets too
 void WatchMoviesView::onPlayTime(uint32 mstime)
 {
 	mUi->timeLabelValue->setText(QTime().addMSecs(mstime).toString("hh:mm:ss"));

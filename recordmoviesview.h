@@ -18,14 +18,18 @@ public:
 private slots:
 	void startRecord();
 	void stopRecord();
+	void browseMovie();
+
+	void movieFileChanged(const QString &text);
 
 	void onRecordStart();
 	void onRecordTime(uint32 mstime);
 	void onRecordSave();
-
-	void browseMovie();
+	void onClientDisconnect();
 
 private:
+	void stopRecordMode();
+
 	MovieFile *mMovieFile;
 	Ui::RecordMoviesView *mUi;
 };

@@ -7,7 +7,7 @@ namespace Ui {
 
 class MovieFile;
 
-class WatchMoviesView : public QWidget
+class WatchMoviesView : public QWidget, public Singleton<WatchMoviesView>
 {
 	Q_OBJECT
 
@@ -15,18 +15,21 @@ public:
 	WatchMoviesView(QWidget *parent);
 	virtual ~WatchMoviesView();
 
-protected slots:
-	void onPlayStart();
-	void onPlayFinish();
-	void onPlayTime(uint32 mstime);
+public slots:
+	void updateMoviesList();
 
 private slots:
-	void updateMoviesList();
-	void activatePlay();
+
+	void startPlay();
 	void stopPlay();
+
 	void speedChanged(int value);
 	void movieChanged();
+
 	void filterMovies(const QString &filter);
+
+	void onPlayStart();
+	void onPlayTime(uint32 mstime);
 
 private:
 	Ui::WatchMoviesView *mUi;

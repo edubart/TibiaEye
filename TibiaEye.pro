@@ -7,7 +7,7 @@ CONFIG(debug, debug|release) {
     win32:CONFIG += console
     DEFINES += __DEBUG__
 }
-win32: RC_FILE = resource.rc
+win32:RC_FILE = resource.rc
 QT += network
 PRECOMPILED_HEADER = headers.h
 HEADERS += mainwindow.h \
@@ -29,8 +29,8 @@ HEADERS += mainwindow.h \
     consttibia.h \
     protocol.h \
     rsa.h \
-    loginprotocol.h \
-    gameprotocol.h \
+    protocollogin.h \
+    protocolgame.h \
     serverproxy.h \
     abstractserverproxy.h \
     servervirtual.h \
@@ -50,15 +50,18 @@ SOURCES += main.cpp \
     networkmessage.cpp \
     protocol.cpp \
     rsa.cpp \
-    loginprotocol.cpp \
-    gameprotocol.cpp \
+    protocollogin.cpp \
+    protocolgame.cpp \
     serverproxy.cpp \
     servervirtual.cpp \
-    tibiasocket.cpp
+    tibiasocket.cpp \
+    protocolgamerecord.cpp \
+    protocolgameplay.cpp
 FORMS += ui/aboutview.ui \
     ui/optionsview.ui \
     ui/recordmoviesview.ui \
     ui/watchmoviesview.ui
 RESOURCES += tibiaeye.qrc
 LIBS += -lgmp
-OTHER_FILES += resource.rc
+OTHER_FILES += resource.rc \
+    TODO.txt

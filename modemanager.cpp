@@ -5,7 +5,6 @@
 #include "clientproxy.h"
 #include "moviefile.h"
 
-//TODO: better mode and stop system
 ModeManager::ModeManager()
 {
 	qDebug("ModeManager::ModeManager");
@@ -29,8 +28,13 @@ bool ModeManager::startMode(eModes mode)
 {
 	qDebug("ModeManager::startMode");
 
+	if(mClientProxy && mClientProxy->isConnected()) {
+		qCritical() << qPrintable(tr("A Tibia client is connected playing or recording, you should logout it first."));
+		return false;
+	}
+
 	if(isModeRunning() || mode == MODE_NONE) {
-		qCritical() << qPrintable(tr("A mode is already running."));
+		qCritical() << qPrintable(tr("Tibia Eye is currently in record or play action, you need to stop it first."));
 		return false;
 	}
 

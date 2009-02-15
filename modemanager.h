@@ -44,6 +44,8 @@ public:
 	void setMovieFile(MovieFile *movieFile) { mMovieFile = movieFile; }
 	MovieFile *getMovieFile() const { return mMovieFile; }
 
+	ClientProxy *getClient() const { return mClientProxy; }
+
 private:
 	ClientProxy *mClientProxy;
 	MovieFile *mMovieFile;

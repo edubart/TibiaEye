@@ -15,11 +15,11 @@ void messageHandler(QtMsgType type, const char *msg)
 		case QtDebugMsg:
 			fprintf(stderr, "Debug: %s\n", msg);
 			break;
-
+#endif
 		case QtWarningMsg:
 			fprintf(stderr, "Warning: %s\n", msg);
 			break;
-#endif
+
 		case QtCriticalMsg:
 			QMessageBox::critical(QApplication::activeWindow(), QTranslator::tr("Error"), msg);
 			fprintf(stderr, "Critical: %s\n", msg);
@@ -77,12 +77,12 @@ int main(int argc, char *argv[])
 	// set app icon
 	qApp->setWindowIcon(QIcon(":/images/tibiaeye_logo_32x32.png"));
 
-	/*
+#ifndef __DEBUG__
 	// sleep
 	QTime dieTime = QTime::currentTime().addSecs(2);
 	while(QTime::currentTime() < dieTime)
 		app.processEvents(QEventLoop::AllEvents, 100);
-	*/
+#endif
 	
 	// create main window
 	MainWindow mainWindow(&settings);

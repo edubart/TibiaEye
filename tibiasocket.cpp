@@ -78,11 +78,10 @@ void TibiaSocket::internalRead()
 
 void TibiaSocket::handleError(QAbstractSocket::SocketError error)
 {
-	if(error == QAbstractSocket::ConnectionRefusedError ||
-	   error == QAbstractSocket::HostNotFoundError) {
-		emit disconnected();
-	} else if(error != QAbstractSocket::RemoteHostClosedError)
+	if(error != QAbstractSocket::RemoteHostClosedError) {
 		qWarning() << "[TibiaSocket::handleError] Socket error code " << error << ": " << errorString();
+		emit disconnected();
+	}
 }
 
 void TibiaSocket::disconnectLater()

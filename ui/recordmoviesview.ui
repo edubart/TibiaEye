@@ -42,7 +42,11 @@
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="fileText"/>
+      <widget class="QLineEdit" name="fileText">
+       <property name="readOnly">
+        <bool>true</bool>
+       </property>
+      </widget>
      </item>
      <item>
       <widget class="QPushButton" name="browseButton">

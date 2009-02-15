@@ -601,7 +601,7 @@
            </spacer>
           </item>
           <item>
-           <widget class="QPushButton" name="activateButton">
+           <widget class="QPushButton" name="startButton">
             <property name="text">
              <string>Play Movie</string>
             </property>

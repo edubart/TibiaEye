@@ -2,6 +2,7 @@
 #include "moviefile.h"
 #include "util.h"
 #include "networkmessage.h"
+#include "watchmoviesview.h"
 
 MovieFile::MovieFile(const QString &filename) :
 	QObject(), mFilename(filename)
@@ -14,7 +15,6 @@ MovieFile::MovieFile(const QString &filename) :
 	mTibiaVersion = 0;
 
 	mMovieDate = 0;
-	mStartMSec = 0;
 	mDuration = 0;
 
 	mSpeed = 1.0f;
@@ -48,7 +48,6 @@ bool MovieFile::loadMovie(QString filename, bool loadPackets)
 	mWorldIp = 0;
 	mTibiaVersion = 0;
 	mMovieDate = 0;
-	mStartMSec = 0;
 	mDuration = 0;
 	mSpeed = 1.0f;
 	mFilename = filename;
@@ -193,8 +192,10 @@ void MovieFile::saveMovie()
 {
 	qDebug("MovieFile::saveMovie");
 
-	if(mPackets.size() <= 0)
+	if(mPackets.size() <= 0) {
+		qWarning() << "[MovieFile::saveMovie] No packets to save.";
 		return;
+	}
 
 	// open the file
 	QFile file(mFilename);
@@ -276,9 +277,18 @@ void MovieFile::saveMovie()
 
 	file.close();
 
+	if(WatchMoviesView::instance())
+		WatchMoviesView::instance()->updateMoviesList();
 	emit movieSaved();
 }
 
+void MovieFile::stopMovie()
+{
+	qDebug("MovieFile::stopMovie");
+
+	timeCounter = QTime();
+	emit movieStopped();
+}
 
 int MovieFile::playMessage(NetworkMessage &msg)
 {
@@ -286,14 +296,14 @@ int MovieFile::playMessage(NetworkMessage &msg)
 
 	if(currentPacketIt == mPackets.end()) {
 		emit movieTime(mDuration);
-		emit movieStopped();
+		stopMovie();
 		currentPacketIt = mPackets.begin();
 		return -1;
 	}
 
 	if(currentPacketIt == mPackets.begin()) {
-		emit movieTime(0);
 		emit movieStarted();
+		emit movieTime(0);
 	}
 
 	Packet *packet = *currentPacketIt++;
@@ -309,23 +319,24 @@ int MovieFile::playMessage(NetworkMessage &msg)
 
 	if(packet && nextPacket)
 		return (uint32)((float)(nextPacket->time - packet->time)/mSpeed);
-	return 0;
+	return 2000;
 }
 
 void MovieFile::recordMessage(NetworkMessage &msg)
 {
 	qDebug("MovieFile::recordMessage");
 
-	if(!mRecordLock) {
-		QDateTime currentTime = QDateTime::currentDateTime();
+	if(!mRecordLock && msg.getMessageLength() > 0) {
 		if(mPackets.empty()) {
-			mMovieDate = currentTime.toTime_t();
-			mStartMSec = currentTime.time().msec();
+			mMovieDate = QDateTime::currentDateTime().toTime_t();
+			timeCounter.start();
 			mDuration = 0;
-
 			emit movieStarted();
+		} else if(timeCounter.isNull()) {
+			mDuration += 1000;
+			timeCounter.start();
 		} else {
-			mDuration = (currentTime.toTime_t() - mMovieDate)*1000 + currentTime.time().msec() - mStartMSec;
+			mDuration += timeCounter.restart();
 		}
 
 		Packet *packet = new Packet;
@@ -379,4 +390,9 @@ QString MovieFile::getMovieTypeName() const
 		default:
 			return tr("Other");
 	}
+}
+
+void MovieFile::rewind()
+{
+	currentPacketIt = mPackets.begin();
 }

@@ -19,6 +19,11 @@ public:
 	void setListenPort(uint16 port) { mListenPort = port; }
 	uint16 listenPort() const { return mListenPort; }
 
+	bool isConnected();
+
+signals:
+	void clientDisconnected();
+
 public slots:
 	void disconnect();
 	void sendMessage(NetworkMessage &msg);
