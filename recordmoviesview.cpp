@@ -59,6 +59,7 @@ void RecordMoviesView::startRecord()
 		if(QFile(mUi->fileText->text()).exists()) {
 			QMessageBox messageBox(this);
 
+			messageBox.setIcon(QMessageBox::Question);
 			messageBox.setText(tr("You selected a file movie that already exists, "
 						"you are able to overwrite it or continue a multisession recording.\n"
 						"What do you want to do?"));
