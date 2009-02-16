@@ -8,19 +8,7 @@ MovieFile::MovieFile(const QString &filename) :
 	QObject(), mFilename(filename)
 {
 	qDebug("MovieFile::MovieFile");
-
-	mMovieType = EMT_OTHER;
-	mPlayerLevel = 0;
-	mWorldIp = 0;
-	mTibiaVersion = 0;
-
-	mMovieDate = 0;
-	mDuration = 0;
-
-	mSpeed = 1.0f;
-
-	mRecordLock = false;
-	currentPacketIt = mPackets.end();
+	resetEverything();
 }
 
 MovieFile::~MovieFile()
@@ -34,6 +22,31 @@ MovieFile::~MovieFile()
 	mPackets.clear();
 }
 
+void MovieFile::resetEverything()
+{
+	mMovieType = EMT_OTHER;
+	mPlayerLevel = 0;
+	mWorldIp = 0;
+	mTibiaVersion = 0;
+	mMovieDate = 0;
+	mDuration = 0;
+	mSpeed = 1.0f;
+
+	foreach(Packet *packet, mPackets) {
+		delete packet->data;
+		delete packet;
+	}
+	mPackets.clear();
+	mMovieTitle.clear();
+	mMovieDescription.clear();
+	mPlayerName.clear();
+	mPlayerWorld.clear();
+	mServerHost.clear();
+
+	mRecordLock = false;
+	currentPacketIt = mPackets.end();
+}
+
 bool MovieFile::loadMovie(bool loadPackets)
 {
     return loadMovie(mFilename, loadPackets);
@@ -43,58 +56,32 @@ bool MovieFile::loadMovie(QString filename, bool loadPackets)
 {
 	qDebug("MovieFile::loadMovie");
 
-	mMovieType = EMT_OTHER;
-	mPlayerLevel = 0;
-	mWorldIp = 0;
-	mTibiaVersion = 0;
-	mMovieDate = 0;
-	mDuration = 0;
-	mSpeed = 1.0f;
+	resetEverything();
 	mFilename = filename;
-
-	mMovieTitle.clear();
-	mMovieDescription.clear();
-	mPlayerName.clear();
-	mPlayerWorld.clear();
-	mServerHost.clear();
-
-	mRecordLock = true;
-	currentPacketIt = mPackets.end();
 
 	// open the file
 	QFile file(filename);
-	if(!file.open(QIODevice::ReadOnly)) {
-		qCritical() << qPrintable(tr("Failed opening movie file \"%1\" for reading.").arg(filename));
+	if(!file.open(QIODevice::ReadOnly))
 		return false;
-	}
 
-	// setup input stream
-	QDataStream in(&file);
+	struct movieheader_t header;
+	file.read((char *)&header, sizeof(struct movieheader_t));
 
-	// check file signature and version
-	uint32 signature;
-	uint8 version;
-	in >> signature >> version;
-
-	if(signature != MOVIE_FILE_SIGNATURE) {
-		qCritical() << qPrintable(tr("Invalid Tibia Eye movie format: %1").arg(filename));
+	if(header.signature != MOVIE_FILE_SIGNATURE)
 		return false;
-	}
 
-    if(version < MOVIE_FILE_VERSION) {
+	if(header.version < MOVIE_FILE_VERSION) {
 		qWarning() << "[MovieFile::loadMovie] Reading an old Tibia Eye movie file version!";
-	} else if(version > MOVIE_FILE_VERSION) {
+	} else if(header.version > MOVIE_FILE_VERSION) {
 		qWarning() << "[MovieFile::loadMovie] Reading a newer Tibia Eye movie file version!";
 	}
 
-	in.setVersion(QDataStream::Qt_4_4);
+	// setup input stream
+	QByteArray byteArray = file.readAll();
+	file.close();
 
-	// clear older packets
-	foreach(Packet *packet, mPackets) {
-		delete packet->data;
-		delete packet;
-	}
-    mPackets.clear();
+	QDataStream in(&byteArray, QIODevice::ReadOnly);
+	in.setVersion(QDataStream::Qt_4_4);
 
 	// read the file
     uint8 opt;
@@ -155,36 +142,52 @@ bool MovieFile::loadMovie(QString filename, bool loadPackets)
                 in.skipRawData(2);
 				break;
 
+			case OPT_CRC:
+			{
+				uint32 checkSum = adlerChecksum((uint8*)byteArray.constData(), in.device()->pos());
+				uint32 readCheckSum;
+				in >> readCheckSum;
+				if(checkSum != readCheckSum)
+					return false;
+				break;
+			}
+
             case OPT_PACKET: // Packet.
 			{
-                if(!loadPackets) {
-                    file.close();
-                    return true;
-                }
+				if(!loadPackets)
+					return true;
 
-                Packet *packet = new Packet;
+				uint32 numPackets;
+				uint32 bufferSize;
 
-                in >> packet->flags;
-                in >> packet->time;
-                in >> packet->size;
+				in >> numPackets;
+				in >> bufferSize;
 
-                packet->data = new uint8 [packet->size];
-                in.readRawData((char*)packet->data, packet->size);
+				QByteArray uncompressedPackets = qUncompress(in.device()->read(bufferSize));
+				QBuffer packetsBuffer(&uncompressedPackets);
+				packetsBuffer.open(QIODevice::ReadOnly);
 
-                mPackets.push_back(packet);
+				for(uint32 i = 0; i< numPackets; i++) {
+					Packet *packet = new Packet;
+					packetsBuffer.read((char *)&packet->time, sizeof(uint32));
+					packetsBuffer.read((char *)&packet->size, sizeof(uint16));
+					packet->data = new uint8 [packet->size];
+					packetsBuffer.read((char *)packet->data, packet->size);
+					mPackets.push_back(packet);
+				}
+				packetsBuffer.close();
+
+				currentPacketIt = mPackets.begin();
                 break;
             }
 
-            default:
-				qCritical() << qPrintable(tr("Error reading movie file: %1").arg(filename));
+			default:
     			file.close();
                 return false;
         }
         in >> opt;
     }
 
-    currentPacketIt = mPackets.begin();
-    file.close();
     return true;
 }
 
@@ -204,12 +207,15 @@ void MovieFile::saveMovie()
 		return;
 	}
 
+	// write file header
+	struct movieheader_t header;
+	header.signature = MOVIE_FILE_SIGNATURE;
+	header.version = MOVIE_FILE_VERSION;
+	file.write((const char*)&header, sizeof(struct movieheader_t));
+
 	// setup output stream
-	QDataStream out(&file);
-
-	out << (uint32)MOVIE_FILE_SIGNATURE;
-	out << (uint8)MOVIE_FILE_VERSION;
-
+	QByteArray byteArray;
+	QDataStream out(&byteArray, QIODevice::WriteOnly);
 	out.setVersion(QDataStream::Qt_4_4);
 
 	if(!mMovieTitle.isEmpty()) {
@@ -265,16 +271,29 @@ void MovieFile::saveMovie()
 	out << (uint16)QSysInfo::WindowsVersion;
 #endif
 
+	out << (uint8)OPT_CRC;
+	out << adlerChecksum((uint8*)byteArray.constData(), out.device()->pos());
+
+	QBuffer packetsBuffer;
+	packetsBuffer.open(QIODevice::WriteOnly);
+
 	foreach(Packet *packet, mPackets) {
-		out << (uint8)OPT_PACKET;
-		out << (uint8)packet->flags;
-        out << packet->time;
-        out << packet->size;
-		out.writeRawData((const char*)packet->data, packet->size);
-    }
+		packetsBuffer.write((char *)&packet->time, sizeof(uint32));
+		packetsBuffer.write((char *)&packet->size, sizeof(uint16));
+		packetsBuffer.write((char *)packet->data, packet->size);
+	}
+
+	QByteArray compressedPackets =  qCompress(packetsBuffer.data(), 9);
+	packetsBuffer.close();
+
+	out << (uint8)OPT_PACKET;
+	out << (uint32)mPackets.size();
+	out << (uint32)compressedPackets.size();
+	out.writeRawData(compressedPackets.constData(), compressedPackets.size());
 
 	out << (uint8)OPT_EOF;
 
+	file.write(byteArray);
 	file.close();
 
 	if(WatchMoviesView::instance())
@@ -335,12 +354,12 @@ void MovieFile::recordMessage(NetworkMessage &msg)
 		} else if(timeCounter.isNull()) {
 			mDuration += 1000;
 			timeCounter.start();
+			emit movieStarted();
 		} else {
 			mDuration += timeCounter.restart();
 		}
 
 		Packet *packet = new Packet;
-		packet->flags = PACKET_SERVER;
 		packet->time = mDuration;
 		packet->size = msg.getMessageLength();
 		packet->data = new uint8[packet->size];

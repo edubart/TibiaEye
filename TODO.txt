@@ -1,5 +1,4 @@
 Milestone 1: (gravar e reproduzir)
-* compactação/encryptação e checagem do video
 * detectar level do player
 * as funcoes de escoder viplist, mensagens, no modo de gravação
 * pegar mensagens de npcs

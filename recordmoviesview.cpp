@@ -71,7 +71,6 @@ void RecordMoviesView::startRecord()
 
 			if(messageBox.clickedButton() == multisessionButton) {
 				mMovieFile->loadMovie();
-				mMovieFile->lockRecord(false);
 			} else if(messageBox.clickedButton() == overwriteButton) {
 
 			} else {

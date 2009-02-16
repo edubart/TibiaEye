@@ -3,7 +3,7 @@
 
 //TODO: encryption,checksum and compression
 
-#define MOVIE_FILE_SIGNATURE	0xFE56F891
+#define MOVIE_FILE_SIGNATURE	0x91F856FE
 #define MOVIE_FILE_VERSION		0x04
 #define MAX_MOVIE_STRING_SIZE	8192
 
@@ -17,14 +17,8 @@ enum eMovieTypes {
 	EMT_OTHER
 };
 
-enum ePacketFlags {
-	PACKET_CLIENT = 0x01,
-	PACKET_SERVER = 0x02
-};
-
 struct Packet
 {
-	uint8 flags; // packet flags
 	uint32 time; // sent time
 	uint16 size; // size of the data
 	uint8 *data; // data of the packet without encryption and checksum
@@ -37,6 +31,11 @@ class NetworkMessage;
 class MovieFile : public QObject
 {
 	Q_OBJECT
+
+	struct movieheader_t {
+		uint32 signature;
+		uint8 version;
+	};
 
 	enum eMovieOpcodes {
 		OPT_MOVIE_TITLE = 0x01,
@@ -52,6 +51,7 @@ class MovieFile : public QObject
 		OPT_TIBIA_VERSION = 0x11,
 		OPT_PLATFORM = 0x12,
 		OPT_OSTYPE = 0x13,
+		OPT_CRC = 0x14,
 		OPT_PACKET = 0xFE,
 		OPT_EOF = 0xFF,
 	};
@@ -114,6 +114,8 @@ public slots:
 	void recordMessage(NetworkMessage &msg);
 
 private:
+	void resetEverything();
+
 	QString mFilename;
 	QString mMovieTitle;
 	QString mMovieDescription;
