@@ -27,7 +27,7 @@
     <message>
         <location filename="../gameprotocol.cpp" line="101"/>
         <source>You may have restarted Tibia Eye, please relogin.</source>
-        <translation>Você deve ter reniciado o Tibia Eye, relogue.</translation>
+        <translation type="obsolete">Você deve ter reniciado o Tibia Eye, relogue.</translation>
     </message>
 </context>
 <context>
@@ -35,48 +35,48 @@
     <message>
         <location filename="../loginprotocol.cpp" line="64"/>
         <source>Your tibia version is not supported by Tibia Eye.</source>
-        <translation>A versão do seu Tibia não é suportada pelo Tibia Eye.</translation>
+        <translation type="obsolete">A versão do seu Tibia não é suportada pelo Tibia Eye.</translation>
     </message>
 </context>
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../mainwindow.cpp" line="59"/>
+        <location filename="../mainwindow.cpp" line="60"/>
         <source>Watch Movies</source>
         <translation>Ver Filmes</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="60"/>
+        <location filename="../mainwindow.cpp" line="61"/>
         <source>Record Movies</source>
         <translation>Gravar Filmes</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="61"/>
+        <location filename="../mainwindow.cpp" line="62"/>
         <source>Watch Streams</source>
         <translation>Ver Streams</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="62"/>
+        <location filename="../mainwindow.cpp" line="63"/>
         <source>Stream Movies</source>
         <translation>Criar Stream</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="63"/>
+        <location filename="../mainwindow.cpp" line="64"/>
         <source>Download Movies</source>
         <translation>Baixar Filmes</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="64"/>
+        <location filename="../mainwindow.cpp" line="65"/>
         <source>Tibia Eye Account</source>
         <translation>Conta Tibia Eye</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="65"/>
+        <location filename="../mainwindow.cpp" line="66"/>
         <source>Options</source>
         <translation>Opções</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="66"/>
+        <location filename="../mainwindow.cpp" line="67"/>
         <source>About</source>
         <translation>Sobre</translation>
     </message>
@@ -85,18 +85,40 @@
         <source>Failed opening theme &quot;%1&quot;.</source>
         <translation>Error ao abrir a theme &quot;%1&quot;.</translation>
     </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="143"/>
+        <source>Closing Tibia Eye</source>
+        <translation>Fechando o Tibia Eye</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="146"/>
+        <source>You are trying to close Tibia Eye while a Tibia client is connected, doing this will disconnect Tibia and stop any action that it is running on it.
+Are you sure that you want to continue?</source>
+        <translation>Você está tentando fechar o Tibia Eye enquanto um client de Tibia está conectado, fazendo isso vai desconectar o Tibia e parar qualquer ação rodando nele.
+Você tem certeza que quer continuar?</translation>
+    </message>
 </context>
 <context>
     <name>ModeManager</name>
     <message>
         <location filename="../modemanager.cpp" line="33"/>
         <source>A mode is already running.</source>
-        <translation>Um modo já esta rodando.</translation>
+        <translation type="obsolete">Um modo já esta rodando.</translation>
     </message>
     <message>
-        <location filename="../modemanager.cpp" line="41"/>
+        <location filename="../modemanager.cpp" line="45"/>
         <source>Unable to find a supported Tibia client running.</source>
         <translation>Nenhuma versão suportada do client do Tibia foi encontrada.</translation>
+    </message>
+    <message>
+        <location filename="../modemanager.cpp" line="32"/>
+        <source>A Tibia client is connected playing or recording, you should logout it first.</source>
+        <translation>Um client de Tibia está conectado reproduzindo ou gravando, você tem que deslogar primeiro.</translation>
+    </message>
+    <message>
+        <location filename="../modemanager.cpp" line="37"/>
+        <source>Tibia Eye is currently in record or play action, you need to stop it first.</source>
+        <translation>O Tibia Eye está gravando ou reproduzindo, você tem que parar-lo primeiro.</translation>
     </message>
 </context>
 <context>
@@ -109,55 +131,55 @@
     <message>
         <location filename="../moviefile.cpp" line="81"/>
         <source>Invalid Tibia Eye movie format: %1</source>
-        <translation>Formato de filmes do Tibia Eye invalido: %1</translation>
+        <translation type="obsolete">Formato de filmes do Tibia Eye invalido: %1</translation>
     </message>
     <message>
         <location filename="../moviefile.cpp" line="180"/>
         <source>Error reading movie file: %1</source>
-        <translation>Erro na leitura do filme: %1</translation>
+        <translation type="obsolete">Erro na leitura do filme: %1</translation>
     </message>
     <message>
-        <location filename="../moviefile.cpp" line="202"/>
+        <location filename="../moviefile.cpp" line="206"/>
         <source>Failed opening file %1 for writing.</source>
         <translation>Erro ao abrir o filme %1 para escrita.</translation>
     </message>
     <message>
-        <location filename="../moviefile.cpp" line="367"/>
+        <location filename="../moviefile.cpp" line="397"/>
         <source>Hunt</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../moviefile.cpp" line="369"/>
+        <location filename="../moviefile.cpp" line="399"/>
         <source>Quest</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../moviefile.cpp" line="371"/>
+        <location filename="../moviefile.cpp" line="401"/>
         <source>Explore</source>
         <translation>Exploração</translation>
     </message>
     <message>
-        <location filename="../moviefile.cpp" line="373"/>
+        <location filename="../moviefile.cpp" line="403"/>
         <source>Player Kill</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../moviefile.cpp" line="375"/>
+        <location filename="../moviefile.cpp" line="405"/>
         <source>War</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../moviefile.cpp" line="377"/>
+        <location filename="../moviefile.cpp" line="407"/>
         <source>Party</source>
         <translation>Festa</translation>
     </message>
     <message>
         <location filename="../moviefile.cpp" line="68"/>
         <source>Failed opening movie file &quot;%1&quot; for reading.</source>
-        <translation>Falha ao abrir o filme &quot;%1&quot; para leitura.</translation>
+        <translation type="obsolete">Falha ao abrir o filme &quot;%1&quot; para leitura.</translation>
     </message>
     <message>
-        <location filename="../moviefile.cpp" line="380"/>
+        <location filename="../moviefile.cpp" line="410"/>
         <source>Other</source>
         <translation>Outro</translation>
     </message>
@@ -165,17 +187,17 @@
 <context>
     <name>OptionsView</name>
     <message>
-        <location filename="../optionsview.cpp" line="103"/>
+        <location filename="../optionsview.cpp" line="110"/>
         <source>Changing language</source>
         <translation>Mudando a linguagem</translation>
     </message>
     <message>
-        <location filename="../optionsview.cpp" line="103"/>
+        <location filename="../optionsview.cpp" line="110"/>
         <source>Restart is requeried to changes take effect.</source>
         <translation>É necessário que você renicie para as mudanças terem efeito.</translation>
     </message>
     <message>
-        <location filename="../optionsview.cpp" line="120"/>
+        <location filename="../optionsview.cpp" line="127"/>
         <source>Movies Directory</source>
         <translation>Diretório de filmes</translation>
     </message>
@@ -251,6 +273,32 @@
     </message>
 </context>
 <context>
+    <name>ProtocolGame</name>
+    <message>
+        <location filename="../protocolgamerecord.cpp" line="70"/>
+        <source>Character not detected by Tibia Eye, please relogin your account.</source>
+        <translation>Jogador não detectado pelo Tibia Eye, relogue sua conta denovo.</translation>
+    </message>
+    <message>
+        <location filename="../protocolgamerecord.cpp" line="84"/>
+        <source>You cannot record multiple characters in the same movie.</source>
+        <translation>Você não pode gravar varios jogadores em um mesmo filme.</translation>
+    </message>
+    <message>
+        <location filename="../protocolgamerecord.cpp" line="89"/>
+        <source>You cannot record a different Tibia clients versions in the same movie.</source>
+        <translation>Você não pode gravar diferentes versões de Tibia em um mesmo filme.</translation>
+    </message>
+</context>
+<context>
+    <name>ProtocolLogin</name>
+    <message>
+        <location filename="../protocollogin.cpp" line="63"/>
+        <source>Your tibia version is not supported by Tibia Eye.</source>
+        <translation>A versão do seu Tibia não é suportada pelo Tibia Eye.</translation>
+    </message>
+</context>
+<context>
     <name>QTranslator</name>
     <message>
         <location filename="../main.cpp" line="24"/>
@@ -266,42 +314,42 @@
 <context>
     <name>RecordMoviesView</name>
     <message>
-        <location filename="../recordmoviesview.cpp" line="37"/>
+        <location filename="../recordmoviesview.cpp" line="41"/>
         <source>Please, enter the movie file path.</source>
         <translation>Porfavor, entre com o nome do arquivo do filme.</translation>
     </message>
     <message>
-        <location filename="../recordmoviesview.cpp" line="42"/>
+        <location filename="../recordmoviesview.cpp" line="46"/>
         <source>Please, enter the movie title.</source>
         <translation>Porfavor, entre com o título do filme.</translation>
     </message>
     <message>
-        <location filename="../recordmoviesview.cpp" line="47"/>
+        <location filename="../recordmoviesview.cpp" line="51"/>
         <source>Please, enter the movie type.</source>
         <translation>Porfavor, entre com o tipo de filme.</translation>
     </message>
     <message>
-        <location filename="../recordmoviesview.cpp" line="66"/>
+        <location filename="../recordmoviesview.cpp" line="100"/>
         <source>Waiting player login..</source>
         <translation>Esperando player logar..</translation>
     </message>
     <message>
-        <location filename="../recordmoviesview.cpp" line="91"/>
+        <location filename="../recordmoviesview.cpp" line="147"/>
         <source>Recording..</source>
         <translation>Gravando..</translation>
     </message>
     <message>
         <location filename="../recordmoviesview.cpp" line="103"/>
         <source>Recorded and saved.</source>
-        <translation>Gravado e salvado.</translation>
+        <translation type="obsolete">Gravado e salvado.</translation>
     </message>
     <message>
-        <location filename="../recordmoviesview.cpp" line="118"/>
+        <location filename="../recordmoviesview.cpp" line="122"/>
         <source>Save Movie</source>
         <translation>Salvar Filme</translation>
     </message>
     <message>
-        <location filename="../recordmoviesview.cpp" line="118"/>
+        <location filename="../recordmoviesview.cpp" line="124"/>
         <source>Tibia Eye Movies (*.tem)</source>
         <translation>Filmes Tibia Eye (*.tem)</translation>
     </message>
@@ -311,119 +359,156 @@
         <translation>Arquivo:</translation>
     </message>
     <message>
-        <location filename="../ui/recordmoviesview.ui" line="50"/>
+        <location filename="../ui/recordmoviesview.ui" line="54"/>
         <source>Browse</source>
         <translation>Procurar</translation>
     </message>
     <message>
-        <location filename="../ui/recordmoviesview.ui" line="61"/>
+        <location filename="../ui/recordmoviesview.ui" line="65"/>
         <source>Title:</source>
         <translation>Título:</translation>
     </message>
     <message>
-        <location filename="../ui/recordmoviesview.ui" line="77"/>
+        <location filename="../ui/recordmoviesview.ui" line="81"/>
         <source>Type:</source>
         <translation>Tipo:</translation>
     </message>
     <message>
-        <location filename="../ui/recordmoviesview.ui" line="93"/>
+        <location filename="../ui/recordmoviesview.ui" line="97"/>
         <source>Hunt</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/recordmoviesview.ui" line="98"/>
+        <location filename="../ui/recordmoviesview.ui" line="102"/>
         <source>Quest</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/recordmoviesview.ui" line="103"/>
+        <location filename="../ui/recordmoviesview.ui" line="107"/>
         <source>Explore</source>
         <translation>Exploração</translation>
     </message>
     <message>
-        <location filename="../ui/recordmoviesview.ui" line="108"/>
+        <location filename="../ui/recordmoviesview.ui" line="112"/>
         <source>Player Kill</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/recordmoviesview.ui" line="113"/>
+        <location filename="../ui/recordmoviesview.ui" line="117"/>
         <source>War</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/recordmoviesview.ui" line="118"/>
+        <location filename="../ui/recordmoviesview.ui" line="122"/>
         <source>Party</source>
         <translation>Festa</translation>
     </message>
     <message>
-        <location filename="../ui/recordmoviesview.ui" line="123"/>
+        <location filename="../ui/recordmoviesview.ui" line="127"/>
         <source>Other</source>
         <translation>Outro</translation>
     </message>
     <message>
-        <location filename="../ui/recordmoviesview.ui" line="133"/>
+        <location filename="../ui/recordmoviesview.ui" line="137"/>
         <source>Description:</source>
         <translation>Descrição:</translation>
     </message>
     <message>
-        <location filename="../ui/recordmoviesview.ui" line="149"/>
+        <location filename="../ui/recordmoviesview.ui" line="153"/>
         <source>Record Options</source>
         <translation>Opções de Gravação</translation>
     </message>
     <message>
-        <location filename="../ui/recordmoviesview.ui" line="169"/>
+        <location filename="../ui/recordmoviesview.ui" line="173"/>
         <source>Hide viplist</source>
         <translation>Esconder viplist</translation>
     </message>
     <message>
-        <location filename="../ui/recordmoviesview.ui" line="176"/>
+        <location filename="../ui/recordmoviesview.ui" line="180"/>
         <source>Hide private messages</source>
         <translation>Esconder mensagens privadas</translation>
     </message>
     <message>
-        <location filename="../ui/recordmoviesview.ui" line="187"/>
+        <location filename="../ui/recordmoviesview.ui" line="191"/>
         <source>Hide items</source>
         <translation>Esconder items</translation>
     </message>
     <message>
-        <location filename="../ui/recordmoviesview.ui" line="194"/>
+        <location filename="../ui/recordmoviesview.ui" line="198"/>
         <source>Hide skills</source>
         <translation>Esconder skills</translation>
     </message>
     <message>
-        <location filename="../ui/recordmoviesview.ui" line="214"/>
+        <location filename="../ui/recordmoviesview.ui" line="218"/>
         <source>Record Status</source>
         <translation>Estatus de gravação</translation>
     </message>
     <message>
-        <location filename="../ui/recordmoviesview.ui" line="240"/>
+        <location filename="../ui/recordmoviesview.ui" line="244"/>
         <source>Status:</source>
         <translation>Estatus:</translation>
     </message>
     <message>
-        <location filename="../ui/recordmoviesview.ui" line="247"/>
+        <location filename="../ui/recordmoviesview.ui" line="251"/>
         <source>color: red; font-weight: bold;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/recordmoviesview.ui" line="250"/>
+        <location filename="../ui/recordmoviesview.ui" line="254"/>
         <source>Idle</source>
         <translation>Parado</translation>
     </message>
     <message>
-        <location filename="../ui/recordmoviesview.ui" line="270"/>
+        <location filename="../ui/recordmoviesview.ui" line="274"/>
         <source>Time Recorded:</source>
         <translation>Tempo Gravado:</translation>
     </message>
     <message>
-        <location filename="../ui/recordmoviesview.ui" line="291"/>
+        <location filename="../ui/recordmoviesview.ui" line="295"/>
         <source>Start Recording</source>
         <translation>Iniciar gravação</translation>
     </message>
     <message>
-        <location filename="../ui/recordmoviesview.ui" line="301"/>
+        <location filename="../ui/recordmoviesview.ui" line="305"/>
         <source>Stop Recording</source>
         <translation>Parar Gravação</translation>
+    </message>
+    <message>
+        <location filename="../recordmoviesview.cpp" line="36"/>
+        <source>You are already recoding or your record finished, you should logout from tibia before recording again.</source>
+        <translation>Você está gravando ou a sua gravação já terminou, você tem que deslogar do Tibia antes de gravar denovo.</translation>
+    </message>
+    <message>
+        <location filename="../recordmoviesview.cpp" line="64"/>
+        <source>You selected a file movie that already exists, you are able to overwrite it or continue a multisession recording.
+What do you want to do?</source>
+        <translation>Você selecionou um filme que ja existe, você pode sobrescreve-lo ou continuar uma gravação de multisessão.
+O que você deseja fazer?</translation>
+    </message>
+    <message>
+        <location filename="../recordmoviesview.cpp" line="66"/>
+        <source>Continue a Multisession Record</source>
+        <translation>Continuar uma gravaão de multisessão</translation>
+    </message>
+    <message>
+        <location filename="../recordmoviesview.cpp" line="67"/>
+        <source>Overwrite</source>
+        <translation>Sobrescrever</translation>
+    </message>
+    <message>
+        <location filename="../recordmoviesview.cpp" line="68"/>
+        <source>Cancel</source>
+        <translation>Cancelar</translation>
+    </message>
+    <message>
+        <location filename="../recordmoviesview.cpp" line="111"/>
+        <source>Waiting client disconnect...</source>
+        <translation>Esperando desconecção do client...</translation>
+    </message>
+    <message>
+        <location filename="../recordmoviesview.cpp" line="159"/>
+        <source>Record saved.</source>
+        <translation>Gravação salva.</translation>
     </message>
 </context>
 <context>
@@ -544,7 +629,7 @@
         <translation>Arquivo do Filme:</translation>
     </message>
     <message>
-        <location filename="../watchmoviesview.cpp" line="105"/>
+        <location filename="../watchmoviesview.cpp" line="157"/>
         <source>none</source>
         <translation>nenhum</translation>
     </message>
@@ -559,7 +644,7 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../watchmoviesview.cpp" line="107"/>
+        <location filename="../watchmoviesview.cpp" line="160"/>
         <source>Idle</source>
         <translation>Parado</translation>
     </message>
@@ -584,24 +669,24 @@
         <translation>Parar Filme</translation>
     </message>
     <message>
-        <location filename="../watchmoviesview.cpp" line="89"/>
+        <location filename="../watchmoviesview.cpp" line="134"/>
         <source>Waiting tibia connection...</source>
         <translation>Esperando conecção do tibia...</translation>
     </message>
     <message>
-        <location filename="../watchmoviesview.cpp" line="98"/>
+        <location filename="../watchmoviesview.cpp" line="142"/>
         <source>You must select a movie to play.</source>
         <translation>Você tem que selecionar um filme para ver.</translation>
     </message>
     <message>
-        <location filename="../watchmoviesview.cpp" line="171"/>
+        <location filename="../watchmoviesview.cpp" line="219"/>
         <source>Playing...</source>
         <translation>Reproduzindo...</translation>
     </message>
     <message>
         <location filename="../watchmoviesview.cpp" line="181"/>
         <source>Play finished.</source>
-        <translation>Reprodução concluida.</translation>
+        <translation type="obsolete">Reprodução concluida.</translation>
     </message>
 </context>
 </TS>
