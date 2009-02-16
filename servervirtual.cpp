@@ -41,7 +41,7 @@ void ServerVirtual::onTimer()
 {
 	qDebug("ServerVirtual::onTimer");
 
-	if(mState == VSTATE_STOP) {
+	if(mState == VSTATE_STOP || !mModeManager->getMovieFile()) {
 		mProtocol->onServerDisconnect();
 		mState = VSTATE_FINISHED;
 		return;
