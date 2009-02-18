@@ -59,7 +59,6 @@ int main(int argc, char *argv[])
 	QCoreApplication::setApplicationName("Tibia Eye");
 	QCoreApplication::setApplicationVersion(Constants::APP_VERSION_LONG);
 	QCoreApplication::setOrganizationName("Tibia Eye");
-	//QApplication::setStyle(new QCleanlooksStyle);
 	QSettings::setDefaultFormat(QSettings::IniFormat);
 
 	// load settings
