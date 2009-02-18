@@ -174,8 +174,8 @@ bool MemoryInjection::writeProcessMemory(uint32 address, uint32 size, const void
 	if((bool)!WriteProcessMemory(mProcess, (LPVOID)address, buffer, size, NULL))
 		return false;
 #else
-	//write the memory every 4 btyes from buffer
-	//TODO: this may overwrite additional bytes if the size is not divisiable by 4, so fix
+	//write the memory every 4 bytes from buffer
+	//this may overwrite additional bytes if the size is not divisiable by 4, we should fix this issue if any problem occurs
 	long val;
 	const static int long_size = sizeof(long);
 	for(unsigned int i=0;i < size/long_size + (size % long_size > 0) ? 1 : 0; i++) {

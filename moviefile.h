@@ -1,8 +1,6 @@
 #ifndef MOVIEFILE_H
 #define MOVIEFILE_H
 
-//TODO: encryption,checksum and compression
-
 #define MOVIE_FILE_SIGNATURE	0x91F856FE
 #define MOVIE_FILE_VERSION		0x04
 #define MAX_MOVIE_STRING_SIZE	8192
@@ -27,7 +25,7 @@ typedef QVector<Packet*> PacketVector;
 
 class NetworkMessage;
 
-//TODO: movie system total remake, mvoe MovieFile to just Movie
+//TODO: movie system total remake, move MovieFile to just Movie
 class MovieFile : public QObject
 {
 	Q_OBJECT

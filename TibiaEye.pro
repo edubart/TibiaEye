@@ -16,7 +16,7 @@ HEADERS += mainwindow.h \
     watchmoviesview.h \
     recordmoviesview.h \
     optionsview.h \
-    aboutview.h \
+    aboutdialog.h \
     constants.h \
     moviefile.h \
     definitions.h \
@@ -41,7 +41,7 @@ SOURCES += main.cpp \
     watchmoviesview.cpp \
     recordmoviesview.cpp \
     optionsview.cpp \
-    aboutview.cpp \
+    aboutdialog.cpp \
     moviefile.cpp \
     util.cpp \
     modemanager.cpp \
@@ -57,8 +57,7 @@ SOURCES += main.cpp \
     tibiasocket.cpp \
     protocolgamerecord.cpp \
     protocolgameplay.cpp
-FORMS += ui/aboutview.ui \
-    ui/optionsview.ui \
+FORMS += ui/optionsview.ui \
     ui/recordmoviesview.ui \
     ui/watchmoviesview.ui
 RESOURCES += tibiaeye.qrc

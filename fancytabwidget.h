@@ -9,6 +9,7 @@ public:
 	FancyTabWidget(QWidget *parent = 0);
 
 	void insertTab(int index, QWidget *tab, const QString &label);
+	QPushButton *insertButton(int index, const QString &label);
 
 	void setLocked(int index, bool locked);
 	void setSplitIndex(int index);

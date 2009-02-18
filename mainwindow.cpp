@@ -4,7 +4,7 @@
 #include "watchmoviesview.h"
 #include "recordmoviesview.h"
 #include "optionsview.h"
-#include "aboutview.h"
+#include "aboutdialog.h"
 #include "modemanager.h"
 #include "memoryinjection.h"
 #include "rsa.h"
@@ -64,7 +64,9 @@ void MainWindow::createDefaultViews()
 	mFancyTab->insertTab(VIEW_DOWNLOAD_MOVIES, new QWidget(this), tr("Download Movies"));
 	mFancyTab->insertTab(VIEW_TIBIAEYE_ACCOUNT, new QWidget(this), tr("Tibia Eye Account"));
 	mFancyTab->insertTab(VIEW_OPTIONS, mOptions, tr("Options"));
-	mFancyTab->insertTab(VIEW_ABOUT, new AboutView(this), tr("About"));
+
+	QPushButton *button = mFancyTab->insertButton(VIEW_ABOUT, tr("About"));
+	connect(button, SIGNAL(clicked()), this, SLOT(about()));
 
 	// disable features not done yet
 	mFancyTab->setLocked(VIEW_WATCH_STREAMS, true);
@@ -154,6 +156,12 @@ void MainWindow::closeEvent(QCloseEvent *event)
 		event->accept();
 	} else
 		event->ignore();
+}
+
+void MainWindow::about()
+{
+	AboutDialog aboutDialog;
+	aboutDialog.exec();
 }
 
 void MainWindow::exit()

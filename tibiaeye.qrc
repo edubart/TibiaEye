@@ -18,5 +18,6 @@
         <file>images/buttons/recordlocal-off.png</file>
         <file>images/buttons/account-off.png</file>
         <file>images/buttons/moviedb-off.png</file>
+        <file>images/tibiaeye_logo_128x128.png</file>
     </qresource>
 </RCC>

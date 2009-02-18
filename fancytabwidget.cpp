@@ -6,7 +6,7 @@ FancyTabWidget::FancyTabWidget(QWidget *parent)
 {
 	mSplitIndex = -1;
 
-	mButtonsWidget = new QWidget(this);
+	mButtonsWidget = new QWidget;
 	mButtonsWidget->setObjectName("fancyTabButtonsWidget");
 
 	mTopButtonsLayout = new QVBoxLayout;
@@ -25,7 +25,7 @@ FancyTabWidget::FancyTabWidget(QWidget *parent)
 	buttonsLayout->addLayout(mBottomButtonsLayout);
 	mButtonsWidget->setLayout(buttonsLayout);
 
-	mPagesWidget = new QStackedWidget(this);
+	mPagesWidget = new QStackedWidget;
 	mPagesWidget->setObjectName("fancyTabPagesWidget");
 
 	QHBoxLayout *mainLayout = new QHBoxLayout;
@@ -43,21 +43,29 @@ FancyTabWidget::FancyTabWidget(QWidget *parent)
 
 void FancyTabWidget::insertTab(int index, QWidget *tab, const QString &label)
 {
-	QPushButton *button = new QPushButton(label, mButtonsWidget);
+	QPushButton *button = insertButton(index, label);
 	button->setCheckable(true);
+
+	mPagesWidget->insertWidget(index, tab);
+	
+	if(mButtons->buttons().size() == 1)
+		button->setChecked(true);
+}
+
+QPushButton *FancyTabWidget::insertButton(int index, const QString &label)
+{
+	QPushButton *button = new QPushButton(label, mButtonsWidget);
 	button->setFocusPolicy(Qt::NoFocus);
 	button->setProperty("tabIndex",index);
 
-	mPagesWidget->insertWidget(index, tab);
 	mButtons->addButton(button, index);
 
 	if(index > mSplitIndex)
 		mBottomButtonsLayout->insertWidget(index, button);
 	else
 		mTopButtonsLayout->insertWidget(index, button);
-	
-	if(mButtons->buttons().size() == 1)
-		button->setChecked(true);
+
+	return button;
 }
 
 void FancyTabWidget::setLocked(int index, bool locked)
@@ -74,5 +82,6 @@ void FancyTabWidget::setSplitIndex(int index)
 
 void FancyTabWidget::changePage(int index)
 {
-	mPagesWidget->setCurrentIndex(index);
+	if(mButtons->button(index)->isCheckable())
+		mPagesWidget->setCurrentIndex(index);
 }

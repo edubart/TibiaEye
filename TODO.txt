@@ -2,7 +2,8 @@ Milestone 1: (gravar e reproduzir)
 * detectar level do player
 * as funcoes de escoder viplist, mensagens, no modo de gravação
 * pegar mensagens de npcs
-* pular partes do filme
+* checkar updates
+* pular partes do filme usando um parser interno
 
 Milestone 2: (gravar a vida)
 * conjunto de movies files
@@ -17,10 +18,15 @@ Milestone 5: (eagle eye v1)
 Milestone 6: (eagle eye v2)
 
 Windows:
-assosiação de arquivos
-abrir tibia e logar automatico (assembly way)
+* assosiação de arquivos .tem
+* abrir tibia e logar automatico (por assembly)
 
-ideias:
-não gravar pacotes, mas gravar o mapa e um timeline de mudanças
+Outras ideias:
 comandos no play mode com /
-filtra pacotes q criam janelas
+filtra pacotes q criam janelas (de outfit, channel, texto)
+pontos no filme quando upa level, etc
+
+
+tibia.dat
+784D38
+C:\Arquivos de programas\Tibia 8.40

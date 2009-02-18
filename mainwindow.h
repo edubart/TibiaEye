@@ -34,6 +34,7 @@ protected:
 	void closeEvent(QCloseEvent *event);
 
 public slots:
+	void about();
 	void exit();
 
 private:

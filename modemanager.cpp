@@ -40,6 +40,7 @@ bool ModeManager::startMode(eModes mode)
 
 	uint16 port = OptionsView::instance()->getProxyListenPort();
 
+	//TODO: check if tibia is running every X time and if is closed stop the current mode
 	MemoryInjection *memoryInjection = MemoryInjection::instance();
 	if(!memoryInjection->injectTibia() || !memoryInjection->setServerHost("127.0.0.1", port)) {
 		qCritical() << qPrintable(tr("Unable to find a supported Tibia client running."));

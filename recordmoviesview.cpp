@@ -103,6 +103,7 @@ void RecordMoviesView::startRecord()
 	}
 }
 
+//TODO: autostop record when last record finish
 void RecordMoviesView::stopRecord()
 {
 	if(ModeManager::instance()->getClient()->isConnected()) {
@@ -149,7 +150,6 @@ void RecordMoviesView::onRecordStart()
 	mUi->statusLabelValue->setStyleSheet("color: blue; font-weight: bold;");
 }
 
-//TODO: display current time even when there no incomming packets too
 void RecordMoviesView::onRecordTime(uint32 mstime)
 {
 	mUi->timeLabelValue->setText(QTime().addMSecs(mstime).toString("hh:mm:ss"));

@@ -5,8 +5,8 @@
 #include "networkmessage.h"
 
 class ModeManager;
-class MovieFile;
 
+//TODO: separate play and record classes
 class ProtocolGame : public Protocol
 {
 	Q_OBJECT

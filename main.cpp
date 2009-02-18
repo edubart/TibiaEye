@@ -4,7 +4,6 @@
 
 #ifdef Q_WS_X11
 #define LEAKDETECTOR_NO_MEMORY_WATCH
-//TODO: improved leakdetector in C++
 #include <leakdetector.h>
 #endif
 
@@ -36,6 +35,8 @@ void messageHandler(QtMsgType type, const char *msg)
 	}
 }
 
+//TODO: one TibiaEye instance allowed
+//TODO: resources path with QCoreApplication::applicationDirPath()
 int main(int argc, char *argv[])
 {
 	Q_INIT_RESOURCE(tibiaeye);
@@ -58,7 +59,7 @@ int main(int argc, char *argv[])
 	QCoreApplication::setApplicationName("Tibia Eye");
 	QCoreApplication::setApplicationVersion(Constants::APP_VERSION_LONG);
 	QCoreApplication::setOrganizationName("Tibia Eye");
-	QApplication::setStyle(new QCleanlooksStyle);
+	//QApplication::setStyle(new QCleanlooksStyle);
 	QSettings::setDefaultFormat(QSettings::IniFormat);
 
 	// load settings

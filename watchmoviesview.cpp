@@ -143,11 +143,12 @@ void WatchMoviesView::startPlay()
 	}
 }
 
+//TODO: auto stops play when movies finish
 void WatchMoviesView::stopPlay()
 {
 	ModeManager::instance()->stopMode();
 
-	//TODO: event before movie deletion
+	//TODO: call an event before movie deletion
 	ModeManager::instance()->setMovieFile(NULL);
 	delete mMovieFile;
 	mMovieFile = NULL;
@@ -221,7 +222,7 @@ void WatchMoviesView::onPlayStart()
 	mUi->statusLabelValue->setStyleSheet("color: blue; font-weight: bold");
 }
 
-//TODO: display current time even when there no incomming packets too
+//TODO: display current time even when there are no incomming packets
 void WatchMoviesView::onPlayTime(uint32 mstime)
 {
 	mUi->timeLabelValue->setText(QTime().addMSecs(mstime).toString("hh:mm:ss"));
