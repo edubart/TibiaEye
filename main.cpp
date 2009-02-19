@@ -64,12 +64,13 @@ int main(int argc, char *argv[])
 	// load settings
 	QSettings settings(QSettings::IniFormat, QSettings::UserScope, "Tibia Eye","Tibia Eye");
 
-	// init translator
+	// detects language to be used
 	QString locale = QLocale::system().name();
 	QVariant language = settings.value("Language");
 	if(language.isValid())
 		locale = language.toString();
 
+	// install translator
 	QTranslator translator;
 	translator.load(QDir::currentPath() + "/translations/" + locale + ".qm");
 	app.installTranslator(&translator);
