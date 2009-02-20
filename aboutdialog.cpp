@@ -30,11 +30,11 @@ AboutDialog::AboutDialog(QWidget *parent) :
 						   "Website: %4\n"
 						   "\n"
 						   "Copyright %5 %6. All rights reserved.\n"
-						   "\n"
-						   "The program is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING\n"
-						   "THE WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A\n"
-						   "PARTICULAR PURPOSE.")
-							.arg(APP_BUILD_LONG, APP_AUTHOR,
+//						   "\n"
+//						   "The program is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING\n"
+//						   "THE WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A\n"
+//						   "PARTICULAR PURPOSE."
+							).arg(APP_BUILD_LONG, APP_AUTHOR,
 								 APP_CONTACT, APP_WEBSITE, APP_YEAR, APP_COMPANY
 #ifdef APP_REVISION
 								 , APP_REVISION_STR
