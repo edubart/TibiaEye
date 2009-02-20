@@ -59,6 +59,7 @@ bool ModeManager::startMode(eModes mode)
 	return false;
 }
 
+//TODO: implement a more better and flexible stop/disconnect system
 void ModeManager::stopMode()
 {
 	qDebug("ModeManager::stopMode");

@@ -25,7 +25,7 @@ typedef QVector<Packet*> PacketVector;
 
 class NetworkMessage;
 
-//TODO: movie system total remake, move MovieFile to just Movie
+//TODO: movie system remake, move this class MovieFile to just Movie and implement ServerVirtual here
 class MovieFile : public QObject
 {
 	Q_OBJECT

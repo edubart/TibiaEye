@@ -56,23 +56,28 @@ void MainWindow::setupSearchPaths()
 
 void MainWindow::createDefaultViews()
 {
-	mFancyTab->setSplitIndex(VIEW_DOWNLOAD_MOVIES);
+	//mFancyTab->setSplitIndex(VIEW_DOWNLOAD_MOVIES);
+	mFancyTab->setSplitIndex(VIEW_RECORD_MOVIES);
+
 	mFancyTab->insertTab(VIEW_WATCH_MOVIES, new WatchMoviesView(this), tr("Watch Movies"));
 	mFancyTab->insertTab(VIEW_RECORD_MOVIES, new RecordMoviesView(this), tr("Record Movies"));
+	/*
 	mFancyTab->insertTab(VIEW_WATCH_STREAMS, new QWidget(this), tr("Watch Streams"));
 	mFancyTab->insertTab(VIEW_STREAM_MOVIES, new QWidget(this), tr("Stream Movies"));
 	mFancyTab->insertTab(VIEW_DOWNLOAD_MOVIES, new QWidget(this), tr("Download Movies"));
 	mFancyTab->insertTab(VIEW_TIBIAEYE_ACCOUNT, new QWidget(this), tr("Tibia Eye Account"));
+	*/
 	mFancyTab->insertTab(VIEW_OPTIONS, mOptions, tr("Options"));
 
 	QPushButton *button = mFancyTab->insertButton(VIEW_ABOUT, tr("About"));
 	connect(button, SIGNAL(clicked()), this, SLOT(about()));
 
-	// disable features not done yet
+	/*
 	mFancyTab->setLocked(VIEW_WATCH_STREAMS, true);
 	mFancyTab->setLocked(VIEW_STREAM_MOVIES, true);
 	mFancyTab->setLocked(VIEW_DOWNLOAD_MOVIES, true);
 	mFancyTab->setLocked(VIEW_TIBIAEYE_ACCOUNT, true);
+	*/
 }
 
 // settings keys
