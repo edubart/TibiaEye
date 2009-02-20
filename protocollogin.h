@@ -7,7 +7,6 @@
 class ModeManager;
 class MovieFile;
 
-//TODO: separate record and play classes
 class ProtocolLogin : public Protocol
 {
 	Q_OBJECT

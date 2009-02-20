@@ -28,7 +28,7 @@ bool MemoryInjection::injectTibia()
 		return false;
 
 	// checks tibia version
-	//TODO: fix tibia version checks
+	//TODO: find other way to determine tibia version crossplataform
 	mTibiaVersion = 0;
 
 	bool ret = true;

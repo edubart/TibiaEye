@@ -6,7 +6,7 @@
 
 class ModeManager;
 
-//TODO: separate play and record classes
+//TODO: maybe we should split record/play protocol classes?
 class ProtocolGame : public Protocol
 {
 	Q_OBJECT

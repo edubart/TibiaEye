@@ -4,17 +4,15 @@
 namespace Constants {
 
 #define APP_VERSION_MAJOR 0
-#define APP_VERSION_MINOR 3
-#define IDE_VERSION_RELEASE 2
-
-//#define APP_REVISION 1
+#define APP_VERSION_MINOR 4
+#define APP_VERSION_RELEASE 0
 
 #define STRINGIFY_INTERNAL(x) #x
 #define STRINGIFY(x) STRINGIFY_INTERNAL(x)
 
 #define APP_VERSION STRINGIFY(APP_VERSION_MAJOR) \
 	"." STRINGIFY(APP_VERSION_MINOR) \
-	"." STRINGIFY(IDE_VERSION_RELEASE)
+	"." STRINGIFY(APP_VERSION_RELEASE)
 
 #define APP_BUILD   __DATE__ ", " __TIME__
 
@@ -26,6 +24,10 @@ const char * const APP_AUTHOR            = "Eduardo Bart";
 const char * const APP_CONTACT           = "contact@tibiaeye.com";
 const char * const APP_WEBSITE           = "http://www.tibiaeye.com/";
 const char * const APP_YEAR              = "2009";
+
+#ifdef APP_REVISION
+const char * const APP_REVISION_STR      = STRINGIFY(APP_REVISION);
+#endif
 
 }
 

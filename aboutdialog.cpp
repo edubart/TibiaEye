@@ -22,6 +22,9 @@ AboutDialog::AboutDialog(QWidget *parent) :
 
 	QLabel *aboutLabel = new QLabel;
 	aboutLabel->setText(tr("Built on %1\n"
+#ifdef APP_REVISION
+						   "Revision: %7\n"
+#endif
 						   "Author: %2\n"
 						   "Contact: %3\n"
 						   "Website: %4\n"
@@ -32,7 +35,11 @@ AboutDialog::AboutDialog(QWidget *parent) :
 						   "THE WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A\n"
 						   "PARTICULAR PURPOSE.")
 							.arg(APP_BUILD_LONG, APP_AUTHOR,
-								 APP_CONTACT, APP_WEBSITE, APP_YEAR, APP_COMPANY));
+								 APP_CONTACT, APP_WEBSITE, APP_YEAR, APP_COMPANY
+#ifdef APP_REVISION
+								 , APP_REVISION_STR
+#endif
+							));
 
 	QVBoxLayout *aboutLabelsLayout = new QVBoxLayout;
 	aboutLabelsLayout->addWidget(appLabel);
