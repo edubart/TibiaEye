@@ -7,6 +7,9 @@ using namespace Constants;
 AboutDialog::AboutDialog(QWidget *parent) :
 	QDialog(parent)
 {
+	setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+	setWindowTitle(tr("About Tibia Eye"));
+
 	QLabel *imageLabel = new QLabel;
 	imageLabel->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
 	imageLabel->setScaledContents(true);
@@ -16,59 +19,52 @@ AboutDialog::AboutDialog(QWidget *parent) :
 	imageLayout->addWidget(imageLabel);
 	imageLayout->addItem(new QSpacerItem(0, 0, QSizePolicy::Minimum, QSizePolicy::Expanding));
 
-	QLabel *appLabel = new QLabel;
-	appLabel->setText(QString("%1 %2").arg(APP_NAME, APP_VERSION_LONG));
-	appLabel->setStyleSheet("font-weight: bold; font-size: 14px");
-
-	QLabel *aboutLabel = new QLabel;
-	aboutLabel->setText(tr("Built on %1\n"
+	const QString aboutText = QString("<h3>%1 %2</h3>"
+								 "Built on %3<br/>"
 #ifdef APP_REVISION
-						   "Revision: %7\n"
+								 "Revision: %9<br/>"
 #endif
-						   "Author: %2\n"
-						   "Contact: %3\n"
-						   "Website: %4\n"
-						   "\n"
-						   "Copyright %5 %6. All rights reserved.\n"
-//						   "\n"
-//						   "The program is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING\n"
-//						   "THE WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A\n"
-//						   "PARTICULAR PURPOSE."
-							).arg(APP_BUILD_LONG, APP_AUTHOR,
-								 APP_CONTACT, APP_WEBSITE, APP_YEAR, APP_COMPANY
+								 "Author: %4<br/>"
+								 "Contact: %5<br/>"
+								 "Website: <a href=\"%6\">%6</a><br/>"
+								 "<br/>"
+								 "Copyright %7 %8. All rights reserved.<br/>"
+//								 "<br/>"
+//								 "The program is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING"
+//								 "THE WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A"
+//								 "PARTICULAR PURPOSE."
+								 ).arg(APP_NAME, APP_VERSION_LONG, APP_BUILD_LONG, APP_AUTHOR,
+									   APP_CONTACT, APP_WEBSITE, APP_YEAR, APP_COMPANY
 #ifdef APP_REVISION
-								 , APP_REVISION_STR
+									   , APP_REVISION_STR
 #endif
-							));
+								);
 
-	QVBoxLayout *aboutLabelsLayout = new QVBoxLayout;
-	aboutLabelsLayout->addWidget(appLabel);
-	aboutLabelsLayout->addWidget(aboutLabel);
+	QLabel *aboutLabel = new QLabel(aboutText);
+	aboutLabel->setWordWrap(true);
+	aboutLabel->setOpenExternalLinks(true);
+	aboutLabel->setTextInteractionFlags(Qt::TextBrowserInteraction);
 
 	QHBoxLayout *aboutLayout = new QHBoxLayout;
 	aboutLayout->addLayout(imageLayout);
-	aboutLayout->addLayout(aboutLabelsLayout);
+	aboutLayout->addWidget(aboutLabel);
 
 	QPushButton *checkUpdatesButton = new QPushButton(tr("Check Updates"));
-	checkUpdatesButton->setEnabled(false);
-
-	QPushButton *websiteButton = new QPushButton(tr("Go to Website"));
 	checkUpdatesButton->setEnabled(false);
 
 	QPushButton *closeButton = new QPushButton(tr("Close"));
 	connect(closeButton, SIGNAL(clicked()), this, SLOT(close()));
 
 	QHBoxLayout *buttonsLayout = new QHBoxLayout;
-	buttonsLayout->addWidget(checkUpdatesButton);
-	buttonsLayout->addWidget(websiteButton);
-	buttonsLayout->addItem(new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Minimum));
 	buttonsLayout->addWidget(closeButton);
+	buttonsLayout->addItem(new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Minimum));
+	buttonsLayout->addWidget(checkUpdatesButton);
 
 	QVBoxLayout *mainLayout = new QVBoxLayout;
+	mainLayout->setSizeConstraint(QLayout::SetFixedSize);
 	mainLayout->addLayout(aboutLayout);
 	mainLayout->addLayout(buttonsLayout);
 	setLayout(mainLayout);
 
 	closeButton->setFocus();
-	setWindowTitle(tr("About Tibia Eye"));
 }

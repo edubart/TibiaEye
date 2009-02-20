@@ -2,16 +2,34 @@
 <!DOCTYPE TS><TS version="1.1" language="en_US">
 <defaultcodec></defaultcodec>
 <context>
+    <name>AboutDialog</name>
+    <message>
+        <location filename="../aboutdialog.cpp" line="11"/>
+        <source>About Tibia Eye</source>
+        <translation>Sobre Tibia Eye</translation>
+    </message>
+    <message>
+        <location filename="../aboutdialog.cpp" line="52"/>
+        <source>Check Updates</source>
+        <translation>Checar Updates</translation>
+    </message>
+    <message>
+        <location filename="../aboutdialog.cpp" line="55"/>
+        <source>Close</source>
+        <translation>Fechar</translation>
+    </message>
+</context>
+<context>
     <name>AboutView</name>
     <message>
         <location filename="../aboutview.cpp" line="27"/>
         <source>&lt;h2 align=&quot;center&quot;&gt;About Tibia Eye&lt;/h2&gt;&lt;br/&gt;&lt;br/&gt;&lt;div align=&quot;center&quot;&gt;Application Name: %1&lt;br/&gt;Version: %2&lt;br/&gt;Build: %3&lt;br/&gt;Authours: %4&lt;br/&gt;Contact: %5&lt;br/&gt;Website: %6&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;Copyright %7 %8. All rights reserved.&lt;br/&gt;The program is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.&lt;br/&gt;&lt;/div&gt;</source>
-        <translation>&lt;h2 align=&quot;center&quot;&gt;Sobre Tibia Eye&lt;/h2&gt;&lt;br/&gt;&lt;br/&gt;&lt;div align=&quot;center&quot;&gt;Nome do Programa: %1&lt;br/&gt;Versão: %2&lt;br/&gt;Build: %3&lt;br/&gt;Autores: %4&lt;br/&gt;Contato: %5&lt;br/&gt;Website: %6&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;Copyright %7 %8. All rights reserved.&lt;br/&gt;The program is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.&lt;br/&gt;&lt;/div&gt;</translation>
+        <translation type="obsolete">&lt;h2 align=&quot;center&quot;&gt;Sobre Tibia Eye&lt;/h2&gt;&lt;br/&gt;&lt;br/&gt;&lt;div align=&quot;center&quot;&gt;Nome do Programa: %1&lt;br/&gt;Versão: %2&lt;br/&gt;Build: %3&lt;br/&gt;Autores: %4&lt;br/&gt;Contato: %5&lt;br/&gt;Website: %6&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;Copyright %7 %8. All rights reserved.&lt;br/&gt;The program is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.&lt;br/&gt;&lt;/div&gt;</translation>
     </message>
     <message>
         <location filename="../ui/aboutview.ui" line="39"/>
         <source>CheckUpdates</source>
-        <translation>Checar Updates</translation>
+        <translation type="obsolete">Checar Updates</translation>
     </message>
 </context>
 <context>
@@ -41,57 +59,57 @@
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../mainwindow.cpp" line="60"/>
+        <location filename="../mainwindow.cpp" line="62"/>
         <source>Watch Movies</source>
         <translation>Ver Filmes</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="61"/>
+        <location filename="../mainwindow.cpp" line="63"/>
         <source>Record Movies</source>
         <translation>Gravar Filmes</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="62"/>
         <source>Watch Streams</source>
-        <translation>Ver Streams</translation>
+        <translation type="obsolete">Ver Streams</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="63"/>
         <source>Stream Movies</source>
-        <translation>Criar Stream</translation>
+        <translation type="obsolete">Criar Stream</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="64"/>
         <source>Download Movies</source>
-        <translation>Baixar Filmes</translation>
+        <translation type="obsolete">Baixar Filmes</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="65"/>
         <source>Tibia Eye Account</source>
-        <translation>Conta Tibia Eye</translation>
+        <translation type="obsolete">Conta Tibia Eye</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="66"/>
+        <location filename="../mainwindow.cpp" line="70"/>
         <source>Options</source>
         <translation>Opções</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="67"/>
+        <location filename="../mainwindow.cpp" line="72"/>
         <source>About</source>
         <translation>Sobre</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="133"/>
+        <location filename="../mainwindow.cpp" line="140"/>
         <source>Failed opening theme &quot;%1&quot;.</source>
         <translation>Error ao abrir a theme &quot;%1&quot;.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="143"/>
+        <location filename="../mainwindow.cpp" line="150"/>
         <source>Closing Tibia Eye</source>
         <translation>Fechando o Tibia Eye</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="146"/>
+        <location filename="../mainwindow.cpp" line="153"/>
         <source>You are trying to close Tibia Eye while a Tibia client is connected, doing this will disconnect Tibia and stop any action that it is running on it.
 Are you sure that you want to continue?</source>
         <translation>Você está tentando fechar o Tibia Eye enquanto um client de Tibia está conectado, fazendo isso vai desconectar o Tibia e parar qualquer ação rodando nele.
@@ -106,7 +124,7 @@ Você tem certeza que quer continuar?</translation>
         <translation type="obsolete">Um modo já esta rodando.</translation>
     </message>
     <message>
-        <location filename="../modemanager.cpp" line="45"/>
+        <location filename="../modemanager.cpp" line="46"/>
         <source>Unable to find a supported Tibia client running.</source>
         <translation>Nenhuma versão suportada do client do Tibia foi encontrada.</translation>
     </message>
@@ -301,12 +319,12 @@ Você tem certeza que quer continuar?</translation>
 <context>
     <name>QTranslator</name>
     <message>
-        <location filename="../main.cpp" line="24"/>
+        <location filename="../main.cpp" line="23"/>
         <source>Error</source>
         <translation>Erro</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="29"/>
+        <location filename="../main.cpp" line="28"/>
         <source>Fatal Error</source>
         <translation>Erro Fatal</translation>
     </message>
@@ -329,12 +347,12 @@ Você tem certeza que quer continuar?</translation>
         <translation>Porfavor, entre com o tipo de filme.</translation>
     </message>
     <message>
-        <location filename="../recordmoviesview.cpp" line="100"/>
+        <location filename="../recordmoviesview.cpp" line="101"/>
         <source>Waiting player login..</source>
         <translation>Esperando player logar..</translation>
     </message>
     <message>
-        <location filename="../recordmoviesview.cpp" line="147"/>
+        <location filename="../recordmoviesview.cpp" line="149"/>
         <source>Recording..</source>
         <translation>Gravando..</translation>
     </message>
@@ -344,12 +362,12 @@ Você tem certeza que quer continuar?</translation>
         <translation type="obsolete">Gravado e salvado.</translation>
     </message>
     <message>
-        <location filename="../recordmoviesview.cpp" line="122"/>
+        <location filename="../recordmoviesview.cpp" line="124"/>
         <source>Save Movie</source>
         <translation>Salvar Filme</translation>
     </message>
     <message>
-        <location filename="../recordmoviesview.cpp" line="124"/>
+        <location filename="../recordmoviesview.cpp" line="126"/>
         <source>Tibia Eye Movies (*.tem)</source>
         <translation>Filmes Tibia Eye (*.tem)</translation>
     </message>
@@ -479,34 +497,34 @@ Você tem certeza que quer continuar?</translation>
         <translation>Você está gravando ou a sua gravação já terminou, você tem que deslogar do Tibia antes de gravar denovo.</translation>
     </message>
     <message>
-        <location filename="../recordmoviesview.cpp" line="64"/>
+        <location filename="../recordmoviesview.cpp" line="65"/>
         <source>You selected a file movie that already exists, you are able to overwrite it or continue a multisession recording.
 What do you want to do?</source>
         <translation>Você selecionou um filme que ja existe, você pode sobrescreve-lo ou continuar uma gravação de multisessão.
 O que você deseja fazer?</translation>
     </message>
     <message>
-        <location filename="../recordmoviesview.cpp" line="66"/>
+        <location filename="../recordmoviesview.cpp" line="67"/>
         <source>Continue a Multisession Record</source>
         <translation>Continuar uma gravaão de multisessão</translation>
     </message>
     <message>
-        <location filename="../recordmoviesview.cpp" line="67"/>
+        <location filename="../recordmoviesview.cpp" line="68"/>
         <source>Overwrite</source>
         <translation>Sobrescrever</translation>
     </message>
     <message>
-        <location filename="../recordmoviesview.cpp" line="68"/>
+        <location filename="../recordmoviesview.cpp" line="69"/>
         <source>Cancel</source>
         <translation>Cancelar</translation>
     </message>
     <message>
-        <location filename="../recordmoviesview.cpp" line="111"/>
+        <location filename="../recordmoviesview.cpp" line="113"/>
         <source>Waiting client disconnect...</source>
         <translation>Esperando desconecção do client...</translation>
     </message>
     <message>
-        <location filename="../recordmoviesview.cpp" line="159"/>
+        <location filename="../recordmoviesview.cpp" line="160"/>
         <source>Record saved.</source>
         <translation>Gravação salva.</translation>
     </message>
@@ -629,7 +647,7 @@ O que você deseja fazer?</translation>
         <translation>Arquivo do Filme:</translation>
     </message>
     <message>
-        <location filename="../watchmoviesview.cpp" line="157"/>
+        <location filename="../watchmoviesview.cpp" line="159"/>
         <source>none</source>
         <translation>nenhum</translation>
     </message>
@@ -644,7 +662,7 @@ O que você deseja fazer?</translation>
         <translation></translation>
     </message>
     <message>
-        <location filename="../watchmoviesview.cpp" line="160"/>
+        <location filename="../watchmoviesview.cpp" line="162"/>
         <source>Idle</source>
         <translation>Parado</translation>
     </message>
@@ -679,7 +697,7 @@ O que você deseja fazer?</translation>
         <translation>Você tem que selecionar um filme para ver.</translation>
     </message>
     <message>
-        <location filename="../watchmoviesview.cpp" line="219"/>
+        <location filename="../watchmoviesview.cpp" line="221"/>
         <source>Playing...</source>
         <translation>Reproduzindo...</translation>
     </message>
