@@ -1,3 +1,5 @@
+Tibia Eye - Created By Eduardo Bart (edub4rt@gmail.com)
+
 Milestone 1: (gravar e reproduzir)
 * detectar level do player
 * as funcoes de escoder viplist, mensagens, no modo de gravação
