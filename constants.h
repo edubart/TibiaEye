@@ -21,8 +21,8 @@ const char * const APP_COMPANY           = "Tibia Eye";
 const char * const APP_VERSION_LONG      = APP_VERSION;
 const char * const APP_BUILD_LONG        = APP_BUILD;
 const char * const APP_AUTHOR            = "Eduardo Bart";
-const char * const APP_CONTACT           = "contact@tibiaeye.com";
-const char * const APP_WEBSITE           = "http://www.tibiaeye.com/";
+const char * const APP_CONTACT           = "eduardob4rt@gmail.com";
+const char * const APP_WEBSITE           = "None";
 const char * const APP_YEAR              = "2009";
 
 #ifdef APP_REVISION

@@ -44,7 +44,7 @@ void OptionsView::readSettings(QSettings *settings)
 	if(moviesDir.isValid() && QDir(moviesDir.toString()).exists())
 		mUi->moviesDirText->setText(settings->value(moviesDirKey).toString());
 	else
-		mUi->moviesDirText->setText(QDir::currentPath() + "/movies");
+		mUi->moviesDirText->setText(QCoreApplication::applicationDirPath() + "/movies");
 	mUi->listenPortBox->setValue(settings->value(proxyListenPortKey, 8000).toInt());
 
 	const QVariant fontFamily = settings->value(fontFamilyKey);
@@ -75,7 +75,7 @@ void OptionsView::writeSettings(QSettings *settings)
 
 void OptionsView::listThemes()
 {
-	QDir directory = QDir("themes");
+	QDir directory = QDir(QCoreApplication::applicationDirPath() + "/themes");
 	QStringList files = directory.entryList(QDir::Dirs);
 
 	for(int i = 0; i < files.size(); i++) {
@@ -89,7 +89,7 @@ void OptionsView::listLanguages()
 {
 	mUi->languagesList->addItem("en_US");
 
-	QDir directory = QDir("translations");
+	QDir directory = QDir(QCoreApplication::applicationDirPath() + "/translations");
 	QStringList files = directory.entryList(QStringList("*.qm"), QDir::Files);
 
 	for(int i = 0; i < files.size(); i++)
@@ -124,7 +124,7 @@ void OptionsView::changeFontButtonClicked()
 
 void OptionsView::browseButtonClicked()
 {
-	QString newDir = QFileDialog::getExistingDirectory(this, tr("Movies Directory"), QDir::currentPath());
+	QString newDir = QFileDialog::getExistingDirectory(this, tr("Movies Directory"), QCoreApplication::applicationDirPath());
 	if(!newDir.isEmpty() && QDir(newDir).exists())
 		mUi->moviesDirText->setText(newDir);
 }

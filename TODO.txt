@@ -13,18 +13,14 @@ Milestone 3: (database de filmes)
 Milestone 4: (streaming)
 * conversar com players
 
-Milestone 5: (eagle eye v1)
-
-Milestone 6: (eagle eye v2)
-
 Windows:
 * assosiação de arquivos .tem
 * abrir tibia e logar automatico (por assembly)
 
 Outras ideias:
 comandos no play mode com /
-filtra pacotes q criam janelas (de outfit, channel, texto)
-pontos no filme quando upa level, etc
+filtra pacotes que criam janelas (de outfit, channel, texto)
+marcar pontos marcantes no filme quando passa de level
 
 
 tibia.dat

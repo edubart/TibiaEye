@@ -32,17 +32,17 @@ bool MemoryInjection::injectTibia()
 	mTibiaVersion = 0;
 
 	bool ret = true;
+	//TODO: version detection remake
 #ifdef WIN32
 	char thisVersion[13];
 	for(uint8 i = 0; i < ConstTibia::VersionsNum; i++) {
-		if(!readProcessMemory(ConstTibia::VersionAddress[i], 13, &thisVersion)) {
+		if(!readProcessMemory(ConstTibia::VersionAddress[i], 12, &thisVersion)) {
 			ret = false;
 			break;
 		}
 
-		if(strncmp(ConstTibia::AvailableVersions[i], thisVersion, 13) == 0) {
+		if(strncmp(ConstTibia::AvailableVersions[i], thisVersion, 12) == 0) {
 			mTibiaVersion = i;
-			ret = false;
 			break;
 		}
 	}

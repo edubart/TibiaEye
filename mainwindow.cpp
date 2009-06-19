@@ -124,7 +124,7 @@ void MainWindow::writeSettings()
 
 bool MainWindow::setTheme(const QString &theme)
 {
-	QString themeFolder(QDir::currentPath() + "/themes/" + theme);
+	QString themeFolder(QCoreApplication::applicationDirPath() + "/themes/" + theme);
 	QDir::setSearchPaths("images", QStringList() << themeFolder << ":/images/buttons/" << ":/images/");
 
 	QFile file(themeFolder + "/tibiaeye.qss");

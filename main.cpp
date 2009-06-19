@@ -35,8 +35,9 @@ void messageHandler(QtMsgType type, const char *msg)
 	}
 }
 
-//TODO: one TibiaEye instance allowed
-//TODO: resources path with QCoreApplication::applicationDirPath()
+//TODO: move needed files (default theme) to qrc
+//TODO: movie association (read for movie files in argc)
+//TODO: one TibiaEye instance allowed (maybe using QtSingleApplication)
 int main(int argc, char *argv[])
 {
 	Q_INIT_RESOURCE(tibiaeye);
@@ -72,7 +73,7 @@ int main(int argc, char *argv[])
 
 	// install translator
 	QTranslator translator;
-	translator.load(QDir::currentPath() + "/translations/" + locale + ".qm");
+	translator.load(QCoreApplication::applicationDirPath() + "/translations/" + locale + ".qm");
 	app.installTranslator(&translator);
 
 	// set app icon
