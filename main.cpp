@@ -2,11 +2,6 @@
 #include "mainwindow.h"
 #include "constants.h"
 
-#ifdef Q_WS_X11
-#define LEAKDETECTOR_NO_MEMORY_WATCH
-#include <leakdetector.h>
-#endif
-
 void messageHandler(QtMsgType type, const char *msg)
 {
 	switch(type) {
@@ -50,6 +45,8 @@ int main(int argc, char *argv[])
 
 	// first create splash screen
 	QPixmap pixmap(":/images/tibiaeye_splash.png");
+
+        Q_ASSERT(!pixmap.isNull());
 	QSplashScreen splash(pixmap);
 	splash.show();
 
